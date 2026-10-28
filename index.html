@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temple — concept redesign</title>
+<meta name="description" content="An unofficial concept redesign of the Temple brain blood-flow wearable website. Not affiliated with the makers of Temple.">
+<meta property="og:title" content="Temple — concept redesign">
+<meta property="og:description" content="An unofficial concept redesign of the Temple wearable website.">
+<meta property="og:image" content="assets/hero6.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#07090D}
+a{color:#EEF0F3;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #EEF0F3;outline-offset:3px}
+::selection{background:#8FC3FF;color:#07090D}
+.disp{font-stretch:118%}
+@keyframes heroIn{from{transform:scale(1.08);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes draw{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(.5);opacity:.95}100%{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
+@keyframes flow{to{stroke-dashoffset:-60}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-img{animation:heroIn 2.2s cubic-bezier(.16,1,.3,1) both}
+.r1{animation:rise 1s .5s cubic-bezier(.16,1,.3,1) both}
+.r2{animation:rise 1s .7s cubic-bezier(.16,1,.3,1) both}
+.r3{animation:rise 1s .9s cubic-bezier(.16,1,.3,1) both}
+.hud{animation:fade .8s 1.9s both}
+.hud-line{stroke-dasharray:600;animation:draw 1.2s 1.5s cubic-bezier(.16,1,.3,1) both}
+.ping{animation:pulse 2.4s 1.4s cubic-bezier(.16,1,.3,1) infinite}
+.ping2{animation:pulse 2.4s 2.6s cubic-bezier(.16,1,.3,1) infinite}
+.nav-in{animation:fade 1.2s 1.2s both}
+.flowline{animation:flow linear infinite}
+.float{animation:float 7s ease-in-out infinite}
+.btn{transition:transform .35s cubic-bezier(.16,1,.3,1),background-color .35s,color .35s,border-color .35s}
+.btn:hover{transform:translateY(-2px)}
+.chip{transition:background-color .35s,color .35s,border-color .35s}
+.sw{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s}
+.sw:hover{transform:scale(1.1)}
+.morph{transition:color .6s,background-color .6s,opacity .6s}
+.tilt{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.finish{transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.glow{transition:background .9s ease,opacity .9s ease}
+.marker{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.rv{transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.wait{opacity:0;transform:translateY(30px)}
+.flat{transform:scaleY(.86)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:#2A3140}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#8FC3FF;margin-top:-10px;box-shadow:0 0 0 6px rgba(143,195,255,.18)}
+input[type=range]::-moz-range-track{height:2px;background:#2A3140}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#8FC3FF}
+@media (max-width:700px){
+  .nav-link{display:none}
+  .hud-wrap{display:none}
+  .hero-sec{height:auto!important;min-height:0!important}
+  .hero-photo{position:relative!important;width:100%!important;height:auto!important;aspect-ratio:4 / 5!important}
+  .hero-photo img{object-position:64% 30%!important}
+  .hero-shade{top:0!important;bottom:auto!important;height:calc(125vw)!important;background:linear-gradient(0deg,#07090D 0%,rgba(7,9,13,0) 35%)!important}
+  .hero-copy{height:auto!important;margin-top:-56px!important;padding-bottom:64px!important}
+  .macro-box{aspect-ratio:auto!important;min-height:0!important;max-height:none!important}
+  .macro-img{position:relative!important;height:420px!important}
+  .macro-copy{position:static!important;padding-top:32px!important;padding-bottom:16px!important}
+  .macro-shade{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.rv.wait{opacity:1;transform:none}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="dc-tpl">
+
+<div style="background: #07090D; color: #EEF0F3; font-family: Archivo, system-ui, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.5; overflow-x: hidden">
+
+  <!-- NAV -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; padding: 12px clamp(16px, 3vw, 32px); background: linear-gradient(180deg, rgba(7,9,13,0.82) 0%, rgba(7,9,13,0.55) 70%, rgba(7,9,13,0) 100%); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); pointer-events: none">
+    <nav aria-label="Primary" class="nav-in" style="pointer-events: auto; max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+      <a href="#top" style="display: flex; align-items: baseline; gap: 10px; min-height: 44px; align-items: center">
+        <span class="disp" style="font-weight: 700; font-size: 20px; letter-spacing: 0.02em">TEMPLE</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A9B0BC">concept</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 999px; background: rgba(14,17,24,0.7); border: 1px solid rgba(255,255,255,0.08)">
+        <a href="#gravity" class="nav-link" style="padding: 10px 14px; font-size: 14px; color: #C5CBD5">Gravity</a>
+        <a href="#entropy" class="nav-link" style="padding: 10px 14px; font-size: 14px; color: #C5CBD5">Entropy</a>
+        <a href="#device" class="nav-link" style="padding: 10px 14px; font-size: 14px; color: #C5CBD5">Device</a>
+        <a href="#proof" class="nav-link" style="padding: 10px 14px; font-size: 14px; color: #C5CBD5">Proof</a>
+        <a href="#reserve" class="btn" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: #EEF0F3; color: #07090D; font-size: 14px; font-weight: 500">Get notified</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero-sec" style="position: relative; height: min(100vh, 920px); min-height: 640px; overflow: hidden; background: #07090D">
+    <div class="hero-photo" style="position: absolute; top: 0; right: 0; height: 100%; aspect-ratio: 1604 / 980">
+      <img class="hero-img" src="assets/hero6.webp" alt="A woman with her hair pulled back looks over her shoulder, a small gold Temple sensor on her temple" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+      <div class="hud-wrap" aria-hidden="true" style="position: absolute; inset: 0">
+        <div style="position: absolute; left: 67%; top: 31.6%; width: 0; height: 0">
+          <span class="ping" style="position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #8FC3FF"></span>
+          <span class="ping2" style="position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #8FC3FF"></span>
+        </div>
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible">
+          <polyline class="hud-line" points="1060,258 990,150 880,150" fill="none" stroke="#8FC3FF" stroke-opacity="0.8" stroke-width="1" vector-effect="non-scaling-stroke"></polyline>
+        </svg>
+        <div class="hud" style="position: absolute; right: 45%; top: 16.7%; transform: translateY(-50%); padding: 12px 16px; border-radius: 12px; background: rgba(7,9,13,0.55); backdrop-filter: blur(10px); border: 1px solid rgba(143,195,255,0.25); font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; white-space: nowrap">
+          <div style="color: #8FC3FF">BRAINFLOW&#160;&#160;<span style="color: #EEF0F3">{{bfLabel}}</span></div>
+          <div style="color: #FF6B6B">ENTROPY&#160;&#160;&#160;&#160;<span style="color: #EEF0F3">{{entropy}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true" class="hero-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, #07090D 0%, rgba(7,9,13,0.92) 28%, rgba(7,9,13,0.35) 50%, rgba(7,9,13,0) 62%), linear-gradient(0deg, #07090D 0%, rgba(7,9,13,0) 26%)"></div>
+    <div class="hero-copy" style="position: relative; height: 100%; max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(56px, 10vh, 104px); display: flex; flex-direction: column; justify-content: flex-end">
+      <p class="r1" style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #A9B0BC">Batch 01 — pre-orders open 1 November</p>
+      <h1 class="r2 disp" style="margin: 18px 0 0; max-width: 820px; font-weight: 300; font-size: clamp(46px, 7vw, 104px); line-height: 0.94; letter-spacing: -0.035em">Wear it where<br>it matters.</h1>
+      <p class="r3" style="margin: 26px 0 0; max-width: 460px; font-size: 19px; color: #C5CBD5">Temple reads blood flow to your brain and the real-time cost of being alive — from one small sensor at your temple.</p>
+      <div class="r3" style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="#reserve" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #EEF0F3; color: #07090D; font-weight: 500">Get notified</a>
+        <a href="#gravity" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid rgba(238,240,243,0.28); font-weight: 500">Why the temple</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAVITY (interactive) -->
+  <section id="gravity" data-rv="gravity" style="max-width: 1320px; margin: 0 auto; padding: clamp(110px, 15vh, 180px) clamp(16px, 4vw, 48px) 120px">
+    <div class="rv {{rv.gravity}}" style="max-width: 860px">
+      <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #8FC3FF">01 / Gravity</p>
+      <h2 class="disp" style="margin: 16px 0 0; font-weight: 300; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.0; letter-spacing: -0.03em">Every hour you stand,<br>your brain works uphill.</h2>
+      <p style="margin: 22px 0 0; max-width: 600px; font-size: 18px; color: #C5CBD5">Your brain burns a fifth of your body’s oxygen, and sits at the top of your circulation. Temple began as a question about what gravity does to that supply. Tilt the body and see the idea.</p>
+    </div>
+
+    <div class="rv {{rv.gravity}}" style="margin-top: 56px; display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch; transition-delay: .15s">
+      <div style="flex: 1 1 520px; min-width: 0; position: relative; border-radius: 24px; background: radial-gradient(70% 70% at 50% 40%, #0F1622 0%, #0A0D13 100%); border: 1px solid #1A202B; overflow: hidden">
+        <svg viewBox="0 0 640 440" role="img" aria-label="{{gravAria}}" style="width: 100%; height: auto; display: block">
+          <path d="M 260 110 A 210 210 0 0 0 50 320" fill="none" stroke="#232A36" stroke-width="1"></path>
+          <sc-for list="{{ticks}}" as="t" hint-placeholder-count="10">
+            <line x1="{{t.x1}}" y1="{{t.y1}}" x2="{{t.x2}}" y2="{{t.y2}}" stroke="#4A5363" stroke-width="{{t.w}}"></line>
+          </sc-for>
+          <text x="268" y="100" fill="#8B93A1" font-family="IBM Plex Mono, monospace" font-size="12">0° UPRIGHT</text>
+          <text x="40" y="346" fill="#8B93A1" font-family="IBM Plex Mono, monospace" font-size="12">90° FLAT</text>
+          <line x1="40" y1="320" x2="290" y2="320" stroke="#232A36"></line>
+          <g class="tilt" style="transform-origin: 260px 320px; transform: rotate({{tiltDeg}})">
+            <line x1="260" y1="320" x2="260" y2="132" stroke="#8FC3FF" stroke-width="1.5"></line>
+            <circle cx="260" cy="126" r="7" fill="#E2C185"></circle>
+            <circle cx="260" cy="126" r="16" fill="none" stroke="#8FC3FF" stroke-opacity=".35"></circle>
+          </g>
+          <circle cx="260" cy="320" r="4" fill="#EEF0F3"></circle>
+          <rect x="500" y="110" width="44" height="210" rx="22" fill="#0F141C" stroke="#232A36"></rect>
+          <rect x="504" y="114" width="36" height="202" rx="18" fill="#8FC3FF" fill-opacity=".85" class="tilt" style="transform-origin: 522px 316px; transform: scaleY({{flowFrac}})"></rect>
+          <line class="flowline" x1="522" y1="312" x2="522" y2="118" stroke="#07090D" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 14" style="animation-duration: {{flowDur}}"></line>
+          <text x="556" y="120" fill="#8B93A1" font-family="IBM Plex Mono, monospace" font-size="11">0%</text>
+          <text x="556" y="218" fill="#8B93A1" font-family="IBM Plex Mono, monospace" font-size="11">−10%</text>
+          <text x="556" y="320" fill="#8B93A1" font-family="IBM Plex Mono, monospace" font-size="11">−20%</text>
+          <text x="522" y="350" text-anchor="middle" fill="#A9B0BC" font-family="IBM Plex Mono, monospace" font-size="11">BRAIN FLOW</text>
+          <text x="160" y="400" text-anchor="middle" fill="#A9B0BC" font-family="IBM Plex Mono, monospace" font-size="11">BODY ANGLE</text>
+        </svg>
+      </div>
+
+      <div style="flex: 1 1 360px; min-width: 0; padding: clamp(24px, 3vw, 40px); border-radius: 24px; background: #0C0F15; border: 1px solid #1A202B; display: flex; flex-direction: column">
+        <p style="margin: 0; font-size: 14px; color: #A9B0BC">Estimated brain blood flow vs lying flat</p>
+        <div class="disp" style="margin-top: 8px; font-weight: 300; font-size: clamp(64px, 8vw, 104px); line-height: 1; letter-spacing: -0.04em; color: {{flowColor}}">{{flowLabel}}</div>
+        <div role="group" aria-label="Posture" style="margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{postures}}" as="p" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{p.pressed}}" onClick="{{p.pick}}" class="chip" style="min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; background: {{p.bg}}; color: {{p.fg}}; border: 1px solid {{p.bd}}">{{p.label}}</button>
+          </sc-for>
+        </div>
+        <label for="tilt" style="margin-top: 22px; font-size: 13px; color: #A9B0BC">Body angle: {{angleLabel}}</label>
+        <input id="tilt" type="range" min="0" max="90" step="1" value="{{tilt}}" onInput="{{onTilt}}" onChange="{{onTilt}}">
+        <p style="margin: auto 0 0; padding-top: 26px; font-size: 14px; line-height: 1.55; color: #A9B0BC">Illustrates the “Gravity Ageing” hypothesis from Temple’s research arm, Continue: that upright posture can lower brain blood flow by up to 17%. It is still being tested, and some clinicians dispute it. BrainFlow lets you watch your own response instead of taking anyone’s word for it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTROPY DAY (interactive) -->
+  <section id="entropy" data-rv="entropy" style="max-width: 1320px; margin: 0 auto; padding: 60px clamp(16px, 4vw, 48px) 120px">
+    <div class="rv {{rv.entropy}}" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+      <div style="max-width: 760px">
+        <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #FF6B6B">02 / Entropy</p>
+        <h2 class="disp" style="margin: 16px 0 0; font-weight: 300; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.0; letter-spacing: -0.03em">The cost of being alive,<br>every second.</h2>
+      </div>
+      <p style="margin: 0; max-width: 380px; color: #C5CBD5">A 1–250 score for how hard your body is working to shed heat. Steps count effort. Entropy counts what everything — coffee, deadlines, dinner — costs you.</p>
+    </div>
+
+    <div class="rv {{rv.entropy}}" style="margin-top: 48px; padding: clamp(20px, 3vw, 40px); border-radius: 24px; background: #0C0F15; border: 1px solid #1A202B; transition-delay: .15s">
+      <div style="display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-end; justify-content: space-between">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #A9B0BC">{{mo.time}} · {{mo.label}}</div>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 6px">
+            <span class="disp morph" style="font-weight: 300; font-size: clamp(72px, 9vw, 128px); line-height: 0.9; letter-spacing: -0.04em; color: {{mo.color}}">{{mo.v}}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #8B93A1">/ 250</span>
+          </div>
+        </div>
+        <p style="margin: 0; max-width: 420px; font-size: 18px; color: #DDE1E7; min-height: 56px">{{mo.note}}</p>
+      </div>
+
+      <svg viewBox="0 0 1000 220" preserveAspectRatio="none" role="img" aria-label="Illustrative Entropy curve across one day" style="margin-top: 28px; width: 100%; height: 220px; display: block">
+        <line x1="0" x2="1000" y1="{{baseY}}" y2="{{baseY}}" stroke="#8FC3FF" stroke-opacity=".45" stroke-dasharray="4 6" vector-effect="non-scaling-stroke"></line>
+        <line x1="0" x2="1000" y1="{{threshY}}" y2="{{threshY}}" stroke="#FF6B6B" stroke-opacity=".45" stroke-dasharray="4 6" vector-effect="non-scaling-stroke"></line>
+        <polyline points="{{dayArea}}" fill="rgba(255,107,107,0.08)" stroke="none"></polyline>
+        <polyline points="{{dayLine}}" fill="none" stroke="#FF6B6B" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"></polyline>
+        <line class="marker" x1="0" x2="0" y1="0" y2="220" stroke="#EEF0F3" stroke-opacity=".5" vector-effect="non-scaling-stroke" style="transform: translateX({{mo.xpx}})"></line>
+      </svg>
+      <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B93A1; margin-top: 6px">
+        <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+      </div>
+
+      <div role="group" aria-label="Moments in the day" style="margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{moments}}" as="m" hint-placeholder-count="6">
+          <button type="button" aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" class="chip" style="min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}; border: 1px solid {{m.bd}}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; opacity: .75">{{m.time}}</span>&#160; {{m.label}}</button>
+        </sc-for>
+      </div>
+      <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 13px; color: #A9B0BC">
+        <span><span style="color: #8FC3FF">- - -</span> Baseline: your low at rest. Push it down.</span>
+        <span><span style="color: #FF6B6B">- - -</span> Threshold: your sustained peak near max heart rate. Push it up.</span>
+        <span>Together: Momentum.</span>
+      </div>
+      <p style="margin: 14px 0 0; font-size: 12px; color: #8B93A1">Illustrative day, not real user data. Responses to caffeine, stress, meals, exercise and meditation are as Temple describes them.</p>
+    </div>
+  </section>
+
+  <!-- DEVICE / FINISHES -->
+  <section id="device" data-rv="device" style="position: relative; padding: 60px clamp(16px, 4vw, 48px) 120px">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <div class="rv {{rv.device}}" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+        <div>
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #E2C185">03 / The device</p>
+          <h2 class="disp" style="margin: 16px 0 0; font-weight: 300; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.0; letter-spacing: -0.03em">No screen. No strap.<br><span style="color: #8B93A1">Nothing to look at but you.</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 360px; color: #C5CBD5">Polished, made to order, and — by Temple’s count — the smallest wearable on the market by volume. Six launch finishes, three in limited numbers.</p>
+      </div>
+
+      <div class="rv {{rv.device}}" style="margin-top: 40px; position: relative; display: flex; flex-wrap: wrap; align-items: center; transition-delay: .15s">
+        <div style="flex: 1 1 560px; min-width: 0; position: relative; display: flex; justify-content: center; align-items: center; padding: clamp(40px, 6vw, 96px) 0">
+          <div aria-hidden="true" class="glow" style="position: absolute; left: 50%; top: 50%; width: min(760px, 120%); aspect-ratio: 1 / 1; transform: translate(-50%, -50%); background: radial-gradient(closest-side, {{dev.glow}}, rgba(7,9,13,0) 72%); pointer-events: none"></div>
+          <div style="position: relative; width: min(540px, 92%)">
+            <div class="float" style="position: relative; width: 100%; aspect-ratio: 677 / 432"><div class="flat" style="position: absolute; inset: 0">
+              <sc-for list="{{finishes}}" as="f" hint-placeholder-count="10">
+                <img class="finish" src="{{f.src}}" alt="{{f.alt}}" aria-hidden="{{f.hidden}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{f.op}}; transform: {{f.tf}}; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.55))">
+              </sc-for>
+            </div></div>
+          </div>
+        </div>
+
+        <div style="flex: 1 1 380px; min-width: 0; padding: 24px 0">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #A9B0BC">{{dev.tag}}</p>
+          <h3 class="disp morph" style="margin: 10px 0 0; font-weight: 300; font-size: clamp(44px, 5vw, 72px); line-height: 1; letter-spacing: -0.03em; color: {{dev.ink}}">{{dev.name}}</h3>
+          <p style="margin: 14px 0 0; color: #C5CBD5">{{dev.note}}</p>
+
+          <p style="margin: 34px 0 12px; font-size: 13px; color: #A9B0BC">Launch line</p>
+          <div role="group" aria-label="Launch line finish" style="display: flex; flex-wrap: wrap; gap: 10px">
+            <sc-for list="{{launchSw}}" as="s" hint-placeholder-count="6">
+              <button type="button" aria-pressed="{{s.pressed}}" aria-label="{{s.name}}" title="{{s.name}}" onClick="{{s.pick}}" class="sw" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; cursor: pointer; background: transparent; border: 1.5px solid {{s.ring}}; display: flex; align-items: center; justify-content: center">
+                <span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; background: {{s.chip}}; box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.35)"></span>
+              </button>
+            </sc-for>
+          </div>
+          <p style="margin: 22px 0 12px; font-size: 13px; color: #A9B0BC">Design exploration · not for sale</p>
+          <div role="group" aria-label="Design exploration finish, not for sale" style="display: flex; flex-wrap: wrap; gap: 10px">
+            <sc-for list="{{conceptSw}}" as="s" hint-placeholder-count="4">
+              <button type="button" aria-pressed="{{s.pressed}}" aria-label="{{s.name}}" title="{{s.name}}" onClick="{{s.pick}}" class="sw" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; cursor: pointer; background: transparent; border: 1.5px solid {{s.ring}}; display: flex; align-items: center; justify-content: center">
+                <span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; background: {{s.chip}}; box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.35)"></span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACRO -->
+  <section aria-label="Wearing Temple" data-rv="macro" style="position: relative; overflow: hidden">
+    <div class="macro-box" style="position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 560px; max-height: 900px; overflow: hidden">
+      <img class="macro-img" src="assets/macro5.webp" alt="Close-up of a gold Temple sensor sitting directly on the skin of the temple" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% 42%">
+      <div aria-hidden="true" class="macro-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,9,13,0.92) 0%, rgba(7,9,13,0.45) 40%, rgba(7,9,13,0) 58%), linear-gradient(0deg, #07090D 0%, rgba(7,9,13,0) 22%), linear-gradient(180deg, #07090D 0%, rgba(7,9,13,0) 14%)"></div>
+      <div class="macro-copy" style="position: absolute; inset: 0; max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center">
+        <h2 class="rv {{rv.macro}} disp" style="margin: 0; max-width: 560px; font-weight: 300; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.0; letter-spacing: -0.03em">Over the artery.<br><span style="color: #8B93A1">Under the radar.</span></h2>
+        <p class="rv {{rv.macro}}" style="margin: 20px 0 0; max-width: 420px; color: #DDE1E7; transition-delay: .15s">It sits on the superficial temporal artery, close to the brain’s own supply — a signal no wrist or finger can reach. A thin medical-grade Grip holds it; Temple says it stays put through runs, swims, showers and saunas.</p>
+      </div>
+    </div>
+    <div data-rv="specs" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); column-gap: 24px">
+      <sc-for list="{{specs}}" as="x" hint-placeholder-count="4">
+        <div class="rv {{rv.specs}}" style="padding: 28px 0; border-top: 1px solid #232A36; transition-delay: {{x.delay}}">
+          <div class="disp" style="font-weight: 300; font-size: 38px; letter-spacing: -0.02em">{{x.v}}</div>
+          <div style="margin-top: 6px; font-size: 14px; color: #A9B0BC">{{x.k}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof" data-rv="proof" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 120px">
+    <div class="rv {{rv.proof}}" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+      <div>
+        <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #A9B0BC">04 / Proof</p>
+        <h2 class="disp" style="margin: 16px 0 0; font-weight: 300; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.0; letter-spacing: -0.03em">Checked against<br>reference instruments.</h2>
+      </div>
+      <p style="margin: 0; max-width: 380px; color: #C5CBD5">Early and public. So far in healthy adults; peer review is pending. Temple also lends devices to researchers who want to test it themselves.</p>
+    </div>
+    <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
+      <sc-for list="{{proof}}" as="p" hint-placeholder-count="3">
+        <article class="rv {{rv.proof}}" style="padding: 32px; border-radius: 20px; background: #0C0F15; border: 1px solid #1A202B; transition-delay: {{p.delay}}">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{p.color}}">{{p.signal}}</div>
+          <div class="disp" style="margin-top: 18px; font-weight: 300; font-size: clamp(46px, 5vw, 62px); line-height: 1; letter-spacing: -0.03em">{{p.r}}</div>
+          <div style="margin-top: 16px; font-size: 16px">{{p.vs}}</div>
+          <div style="margin-top: 6px; font-size: 14px; color: #A9B0BC">{{p.n}}</div>
+          <sc-if value="{{p.href}}" hint-placeholder-val="{{ true }}"><a href="{{p.href}}" target="_blank" rel="noopener" style="margin-top: 18px; display: inline-flex; align-items: center; min-height: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 4px 12px; border-radius: 999px; border: 1px solid #2E3644; color: #DDE1E7">{{p.status}} ↗</a></sc-if>
+          <sc-if value="{{p.nohref}}" hint-placeholder-val="{{ false }}"><div style="margin-top: 18px; display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 4px 12px; border-radius: 999px; border: 1px solid #2E3644; color: #A9B0BC">{{p.status}}</div></sc-if>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" data-rv="reserve" style="position: relative; overflow: hidden; border-top: 1px solid #1A202B">
+    <div aria-hidden="true" style="position: absolute; left: 30%; top: 0; width: 700px; height: 500px; transform: translate(-50%, -45%); background: radial-gradient(closest-side, rgba(143,195,255,0.16), rgba(143,195,255,0))"></div>
+    <div aria-hidden="true" style="position: absolute; left: 70%; top: 0; width: 700px; height: 500px; transform: translate(-50%, -45%); background: radial-gradient(closest-side, rgba(255,107,107,0.12), rgba(255,107,107,0))"></div>
+    <div style="position: relative; max-width: 880px; margin: 0 auto; padding: clamp(110px, 15vh, 170px) clamp(16px, 4vw, 48px); text-align: center">
+      <div class="rv {{rv.reserve}}">
+        <h2 class="disp" style="margin: 0; font-weight: 300; font-size: clamp(44px, 6.4vw, 92px); line-height: 0.95; letter-spacing: -0.035em">Batch 01.<br><span style="color: #8B93A1">Made to order.</span></h2>
+        <p style="margin: 24px auto 0; max-width: 470px; color: #C5CBD5">Pre-orders open 1 November, first come, first served. Each device is made after you order and ships within about three months. Unlimited Grips included.</p>
+      </div>
+      <form class="rv {{rv.reserve}}" onSubmit="{{submit}}" style="position: relative; margin: 40px auto 0; max-width: 520px; display: flex; flex-wrap: wrap; gap: 10px; padding: 6px; border-radius: 32px; background: #0C0F15; border: 1px solid #232A36; transition-delay: .15s">
+        <label for="email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email address</label>
+        <input id="email" type="email" required placeholder="Email for your pre-order reminder" style="flex: 1 1 220px; min-width: 0; min-height: 52px; padding: 0 20px; border: 0; border-radius: 26px; background: transparent; color: #EEF0F3; font: inherit; font-size: 16px">
+        <button type="submit" class="btn" style="flex: 0 0 auto; min-height: 52px; padding: 0 26px; border: 0; border-radius: 999px; background: #EEF0F3; color: #07090D; font: inherit; font-weight: 500; cursor: pointer">{{btnLabel}}</button>
+      </form>
+      <p aria-live="polite" style="margin: 14px 0 0; min-height: 22px; font-size: 15px; color: #8FC3FF">{{doneMsg}}</p>
+      <p class="rv {{rv.reserve}}" style="margin: 4px 0 0; font-size: 14px; color: #A9B0BC; transition-delay: .25s">{{finishLine}} · Price announced at pre-order</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid #1A202B">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 48px) 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+      <div>
+        <div class="disp" style="font-weight: 700; font-size: 26px; letter-spacing: 0.02em">TEMPLE <span style="font-weight: 300; letter-spacing: 0; color: #8B93A1">— a concept redesign</span></div>
+        <p style="margin: 10px 0 0; max-width: 600px; font-size: 13px; color: #A9B0BC">Unofficial design study by Harshad Vaghasiya. Not affiliated with or endorsed by Temple. Imagery is generated for this concept; the gravity and day visuals are illustrations, and the four exploration finishes are not real products. Product facts come from Temple’s public statements and press coverage. Temple is a wellness device, not a medical device.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 14px; color: #C5CBD5">
+        <a href="#gravity" style="padding: 12px 0">Gravity</a>
+        <a href="#entropy" style="padding: 12px 0">Entropy</a>
+        <a href="#device" style="padding: 12px 0">Device</a>
+        <a href="#proof" style="padding: 12px 0">Proof</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { finish: 'gold', tilt: 0, moment: 'coffee', entropy: 52, bf: 0, armed: false, seen: {}, sent: false };
+  }
+  componentDidMount() {
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!still) this.timer = setInterval(() => {
+      const e = Math.max(40, Math.min(66, this.state.entropy + Math.round(Math.random() * 6 - 3)));
+      const bf = Math.max(-2, Math.min(3, this.state.bf + (Math.random() < 0.5 ? -1 : 1)));
+      this.setState({ entropy: e, bf: bf });
+    }, 1400);
+    if (typeof IntersectionObserver === 'undefined') return;
+    const els = Array.prototype.slice.call(document.querySelectorAll('[data-rv]'));
+    if (!els.length) return;
+    const vh = window.innerHeight || 800;
+    const seen = {};
+    els.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh * 0.9) seen[el.getAttribute('data-rv')] = true; });
+    this.io = new IntersectionObserver((entries) => {
+      const add = {};
+      entries.forEach((e) => { if (e.isIntersecting) { add[e.target.getAttribute('data-rv')] = true; this.io.unobserve(e.target); } });
+      if (Object.keys(add).length) this.setState({ seen: Object.assign({}, this.state.seen, add) });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    els.forEach((el) => { if (!seen[el.getAttribute('data-rv')]) this.io.observe(el); });
+    this.setState({ armed: true, seen: seen });
+  }
+  componentWillUnmount() { clearInterval(this.timer); if (this.io) this.io.disconnect(); }
+  renderVals() {
+    const armed = this.state.armed, seen = this.state.seen;
+    const st = (k) => (!armed || seen[k]) ? '' : 'wait';
+    const rv = { gravity: st('gravity'), entropy: st('entropy'), device: st('device'), macro: st('macro'), specs: st('specs'), proof: st('proof'), reserve: st('reserve') };
+
+    // gravity
+    const tilt = this.state.tilt;
+    const pct = -17 * Math.cos(tilt * Math.PI / 180);
+    const pr = Math.round(pct);
+    const flowLabel = pr === 0 ? '0%' : '−' + Math.abs(pr) + '%';
+    const t01 = tilt / 90;
+    const P = [{ id: 0, label: 'Standing' }, { id: 45, label: 'Reclined' }, { id: 90, label: 'Lying flat' }];
+    const postures = P.map((p) => {
+      const on = Math.abs(tilt - p.id) < 1;
+      return { label: p.label, pressed: on ? 'true' : 'false', bg: on ? '#EEF0F3' : 'transparent', fg: on ? '#07090D' : '#C5CBD5', bd: on ? '#EEF0F3' : '#2E3644', pick: () => this.setState({ tilt: p.id }) };
+    });
+
+    // entropy day (illustrative)
+    const curve = [[0,44],[2,40],[3,38],[5,41],[6.5,52],[7.5,71],[8.5,64],[10,72],[11,88],[12,80],[13.5,79],[15,70],[16.5,66],[18,92],[18.5,196],[19.2,150],[20,84],[21,74],[21.5,44],[22.5,52],[24,46]];
+    const X = (h) => h / 24 * 1000;
+    const Y = (v) => 210 - (Math.max(20, Math.min(230, v)) - 20) / 210 * 200;
+    const dayLine = curve.map((p) => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join(' ');
+    const dayArea = '0,220 ' + dayLine + ' 1000,220';
+    const M = [
+      { id: 'sleep', time: '03:00', h: 3, v: 38, label: 'Deep sleep', color: '#8FC3FF', note: 'The quietest your body gets all day. This is where your Baseline is set.' },
+      { id: 'coffee', time: '07:30', h: 7.5, v: 71, label: 'First coffee', color: '#FF6B6B', note: 'Caffeine nudges the cost of being alive upward — Entropy moves before you feel it.' },
+      { id: 'deadline', time: '11:00', h: 11, v: 88, label: 'Deadline', color: '#FF6B6B', note: 'Stress is expensive. Sitting still, your body is still paying for it.' },
+      { id: 'lunch', time: '13:30', h: 13.5, v: 79, label: 'Lunch', color: '#FF6B6B', note: 'Digestion is work too, and it shows up in the score.' },
+      { id: 'run', time: '18:30', h: 18.5, v: 196, label: 'Hard run', color: '#FF6B6B', note: 'Near your max heart rate. The highest you can sustain here is your Threshold.' },
+      { id: 'meditate', time: '21:30', h: 21.5, v: 44, label: 'Meditation', color: '#8FC3FF', note: 'Temple says experienced meditators record some of its lowest scores.' }
+    ];
+    const mo0 = M.find((m) => m.id === this.state.moment) || M[1];
+    const mo = Object.assign({}, mo0, { xpx: X(mo0.h).toFixed(1) + 'px' });
+    const moments = M.map((m) => {
+      const on = m.id === mo0.id;
+      return { time: m.time, label: m.label, pressed: on ? 'true' : 'false', bg: on ? '#EEF0F3' : 'transparent', fg: on ? '#07090D' : '#C5CBD5', bd: on ? '#EEF0F3' : '#2E3644', pick: () => this.setState({ moment: m.id }) };
+    });
+
+    // finishes
+    const B = {
+      gold: 'assets/f-gold.webp', rose: 'assets/f-rose.webp', mirror: 'assets/f-mirror.webp',
+      jade: 'assets/f-jade.webp', blue: 'assets/f-blue.webp', purple: 'assets/f-purple.webp',
+      bone: 'assets/f-bone.webp', titanium: 'assets/f-titanium.webp', oxblood: 'assets/f-oxblood.webp', glacier: 'assets/f-glacier.webp'
+    };
+    const F = [
+      { id: 'gold', name: 'True Gold', tag: 'Launch line', note: 'Polished warm gold.', chip: 'radial-gradient(circle at 30% 25%, #FFF0C4, #C9A04E 55%, #6E5016)', ink: '#E2C185', glow: 'rgba(210,174,109,0.26)', g: 'launch' },
+      { id: 'rose', name: 'Rose Gold', tag: 'Launch line', note: 'Soft copper-pink.', chip: 'radial-gradient(circle at 30% 25%, #FFE1D6, #CF8F7B 55%, #6F3D30)', ink: '#E7AE9C', glow: 'rgba(213,142,120,0.26)', g: 'launch' },
+      { id: 'mirror', name: 'Black Mirror', tag: 'Launch line', note: 'Gloss black, polished to a mirror.', chip: 'radial-gradient(circle at 30% 25%, #8C8F96, #1A1B1F 55%, #000)', ink: '#D4D7DD', glow: 'rgba(170,176,188,0.18)', g: 'launch' },
+      { id: 'jade', name: 'Real Jade', tag: 'Launch line · Limited', note: 'Deep stone green.', chip: 'radial-gradient(circle at 30% 25%, #BFF2DA, #3B9370 55%, #0F3B2B)', ink: '#7FD3AE', glow: 'rgba(47,154,112,0.28)', g: 'launch' },
+      { id: 'blue', name: 'Deep Blue', tag: 'Launch line · Limited', note: 'Midnight blue.', chip: 'radial-gradient(circle at 30% 25%, #BBCBFF, #2A4FB5 55%, #0B1846)', ink: '#9DB5FF', glow: 'rgba(52,96,224,0.30)', g: 'launch' },
+      { id: 'purple', name: 'Purple Funk', tag: 'Launch line · Limited', note: 'Saturated violet.', chip: 'radial-gradient(circle at 30% 25%, #E7CCFF, #7E3FC0 55%, #2C0F52)', ink: '#C9A2F4', glow: 'rgba(138,63,214,0.28)', g: 'launch' },
+      { id: 'bone', name: 'Bone Ceramic', tag: 'Not for sale', note: 'Pale ceramic gloss, close to skin. Design exploration.', chip: 'radial-gradient(circle at 30% 25%, #FFFFFF, #E4DCCB 55%, #9E9583)', ink: '#E9E1D2', glow: 'rgba(233,225,210,0.18)', g: 'concept' },
+      { id: 'titanium', name: 'Lunar Titanium', tag: 'Not for sale', note: 'Polished grey titanium. Design exploration.', chip: 'radial-gradient(circle at 30% 25%, #F2F5F8, #9AA3AC 55%, #464C54)', ink: '#C9D1D9', glow: 'rgba(150,164,178,0.22)', g: 'concept' },
+      { id: 'oxblood', name: 'Oxblood', tag: 'Not for sale', note: 'Deep red lacquer. Design exploration.', chip: 'radial-gradient(circle at 30% 25%, #F3A9B5, #7D1D2F 55%, #2A060D)', ink: '#EE97A7', glow: 'rgba(170,32,58,0.30)', g: 'concept' },
+      { id: 'glacier', name: 'Glacier', tag: 'Not for sale', note: 'Pale aqua. Design exploration.', chip: 'radial-gradient(circle at 30% 25%, #FFFFFF, #BDE5DB 55%, #6A968C)', ink: '#B4EADD', glow: 'rgba(134,214,195,0.22)', g: 'concept' }
+    ];
+    const dev = F.find((f) => f.id === this.state.finish) || F[0];
+    const finishes = F.map((f) => {
+      const on = f.id === dev.id;
+      return { src: B[f.id], alt: on ? 'Temple sensor in ' + f.name : '', hidden: on ? 'false' : 'true', op: on ? 1 : 0, tf: on ? 'scale(1) rotate(0deg)' : 'scale(0.92) rotate(-6deg)' };
+    });
+    const sw = (f) => ({ name: f.name, chip: f.chip, pressed: f.id === dev.id ? 'true' : 'false', ring: f.id === dev.id ? '#EEF0F3' : 'rgba(238,240,243,0.16)', pick: () => this.setState({ finish: f.id }) });
+
+    const bf = this.state.bf;
+    return {
+      rv,
+      entropy: this.state.entropy,
+      bfLabel: (bf >= 0 ? '+' : '−') + Math.abs(bf) + '% vs baseline',
+      tilt, tiltDeg: (-tilt) + 'deg', flowLabel,
+      flowFrac: ((20 + pct) / 20).toFixed(3),
+      ticks: Array.from({ length: 10 }, (_, i) => { const r = i * 10 * Math.PI / 180; const big = i % 3 === 0; const r1 = 210, r2 = big ? 192 : 200; return { x1: (260 - r1 * Math.sin(r)).toFixed(1), y1: (320 - r1 * Math.cos(r)).toFixed(1), x2: (260 - r2 * Math.sin(r)).toFixed(1), y2: (320 - r2 * Math.cos(r)).toFixed(1), w: big ? 1.5 : 1 }; }),
+      flowColor: pr === 0 ? '#8FC3FF' : '#EEF0F3',
+      flowDur: (2.6 - t01 * 1.7).toFixed(2) + 's',
+      haloR: Math.round(52 + t01 * 40),
+      angleLabel: tilt === 0 ? 'upright' : (tilt === 90 ? 'flat' : tilt + '° from upright'),
+      gravAria: 'Illustration: a body tilted ' + tilt + ' degrees from upright, with estimated brain flow ' + flowLabel + ' versus lying flat',
+      onTilt: (e) => { const v = parseInt(e && e.target ? e.target.value : 0, 10); if (!isNaN(v)) this.setState({ tilt: v }); },
+      postures,
+      mo, moments, dayLine, dayArea, baseY: Y(40).toFixed(1), threshY: Y(196).toFixed(1),
+      dev, finishes,
+      launchSw: F.filter((f) => f.g === 'launch').map(sw),
+      conceptSw: F.filter((f) => f.g === 'concept').map(sw),
+      submit: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); },
+      btnLabel: this.state.sent ? 'Added' : 'Notify me',
+      doneMsg: this.state.sent ? 'You’re on the list — we’ll email you on 1 November.' : '',
+      finishLine: dev.g === 'launch' ? 'Selected finish: ' + dev.name : 'Exploration finishes aren’t orderable',
+      specs: [
+        { v: '~7 days', k: 'Battery per charge', delay: '0s' },
+        { v: '1–250', k: 'Entropy, every second', delay: '.1s' },
+        { v: 'Unlimited', k: 'Grips, included', delay: '.2s' },
+        { v: 'Screenless', k: 'Nothing to check, nothing to distract', delay: '.3s' }
+      ],
+      proof: [
+        { signal: 'BRAINFLOW', color: '#8FC3FF', r: 'r ≈ 0.8', vs: 'vs transcranial Doppler', n: '20 adults analysed · cycling and lying down', status: 'Preprint · medRxiv', href: 'https://www.medrxiv.org/content/10.64898/2026.09.02.26362022.full.pdf', nohref: false, delay: '0s' },
+        { signal: 'BRAINFLOW', color: '#8FC3FF', r: '0.84–0.91', vs: 'vs time-domain NIRS brain blood volume', n: '60 adults · tilt, squat, lying down · tracked brain more closely than scalp', status: 'Preprint', href: '', nohref: true, delay: '.12s' },
+        { signal: 'ENTROPY', color: '#FF6B6B', r: 'r = 0.93', vs: 'vs metabolic cart (heart rate: 0.55)', n: '100+ cardio sessions', status: 'Company-reported · unpublished', href: '', nohref: true, delay: '.24s' }
+      ]
+    };
+  }
+}
+
+(function () {
+  var c = new Component({});
+  c.mount(document.getElementById('dc-tpl'), document.getElementById('app'));
+})();
+</script>
+</body>
+</html>

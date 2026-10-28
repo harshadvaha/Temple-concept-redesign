@@ -2,7 +2,13 @@
 
 An independent, unofficial concept redesign of the website for Temple, the temple-worn brain blood-flow wearable. Not affiliated with or endorsed by the makers of Temple. Finish colours marked "design exploration" are not real products.
 
+## Live site
+
+`index.html` is the standalone, publishable version of the latest design (v7). Enable GitHub Pages (Settings → Pages → Deploy from branch → `main` / root) to host it.
+
 ## Contents
+
+- `index.html` + `dc-lite.js` — the live site.
 
 - `project/` — the design canvas. Each `TempleV*.dc.html` is one iteration; **`TempleV7.dc.html` is the latest**. `Main.dc.html` is the first, superseded draft. `canvas.json` lists the boards.
 - `assets/` — image assets used by the pages (hero photo composites, macro close-up, ten device finishes with transparent backgrounds).
