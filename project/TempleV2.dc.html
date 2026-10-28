@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Temple — concept redesign</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0B}
+a{color:#F2EFEA;text-decoration:none}a:hover{color:#D2AE6D}
+::selection{background:#D2AE6D;color:#0A0A0B}
+@keyframes heroIn{from{transform:scale(1.14);filter:brightness(.2)}to{transform:scale(1);filter:brightness(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(-1deg)}}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(.6);opacity:.9}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0}}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(8px);opacity:1}}
+@keyframes sheen{from{transform:translateX(-120%) skewX(-18deg)}to{transform:translateX(220%) skewX(-18deg)}}
+.hero-img{animation:heroIn 2.6s cubic-bezier(.16,1,.3,1) both}
+.r1{animation:rise 1.2s .5s cubic-bezier(.16,1,.3,1) both}
+.r2{animation:rise 1.2s .75s cubic-bezier(.16,1,.3,1) both}
+.r3{animation:rise 1.2s 1s cubic-bezier(.16,1,.3,1) both}
+.r4{animation:fade 1.6s 1.6s both}
+.float{animation:float 7s ease-in-out infinite}
+.ping{animation:pulse 2.4s cubic-bezier(.16,1,.3,1) infinite}
+.ping2{animation:pulse 2.4s 1.2s cubic-bezier(.16,1,.3,1) infinite}
+.cue{animation:cue 2s ease-in-out infinite}
+.btn{transition:transform .35s cubic-bezier(.16,1,.3,1),background-color .35s,color .35s}
+.btn:hover{transform:translateY(-2px)}
+.sw{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.sw:hover{transform:scale(1.12)}
+.morph{transition:filter .8s cubic-bezier(.16,1,.3,1),background-color .8s cubic-bezier(.16,1,.3,1),color .5s}
+.sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sheen::after{content:"";position:absolute;top:0;bottom:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.09),transparent);animation:sheen 6s 2s ease-in-out infinite}
+@supports (animation-timeline: view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 32%}
+  .words span{animation:dim linear both;animation-timeline:view();animation-range:cover 18% cover 48%}
+  .words span:nth-child(2){animation-range:cover 21% cover 51%}
+  .words span:nth-child(3){animation-range:cover 24% cover 54%}
+  .words span:nth-child(4){animation-range:cover 27% cover 57%}
+  .words span:nth-child(5){animation-range:cover 30% cover 60%}
+  .words span:nth-child(6){animation-range:cover 33% cover 63%}
+  .parallax{animation:drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  .scale-in{animation:scaleIn linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+  .hero-txt{animation:out linear both;animation-timeline:scroll(root);animation-range:0 70vh}
+}
+@keyframes dim{from{color:#3A3936}to{color:#F2EFEA}}
+@keyframes drift{from{transform:translateY(-6%) scale(1.12)}to{transform:translateY(6%) scale(1.12)}}
+@keyframes scaleIn{from{transform:scale(.88);opacity:.3;border-radius:48px}to{transform:scale(1);opacity:1;border-radius:20px}}
+@keyframes out{to{opacity:0;transform:translateY(-60px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+
+<div style="background: #0A0A0B; color: #F2EFEA; font-family: Geist, system-ui, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.5; overflow-x: hidden">
+
+  <!-- NAV -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: center; padding: 18px 16px; pointer-events: none">
+    <nav aria-label="Primary" class="r4" style="pointer-events: auto; display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 18px; border-radius: 999px; background: rgba(18,18,20,0.62); backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.08)">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding-right: 10px">
+        <span style="font-weight: 600; font-size: 18px; letter-spacing: -0.02em">Temple</span>
+        <span style="font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9C988F; border: 1px solid #2E2D2A; border-radius: 999px; padding: 3px 8px">Concept</span>
+      </a>
+      <a href="#device" style="padding: 10px 12px; font-size: 14px; color: #B9B5AC">Device</a>
+      <a href="#signals" style="padding: 10px 12px; font-size: 14px; color: #B9B5AC">Signals</a>
+      <a href="#proof" style="padding: 10px 12px; font-size: 14px; color: #B9B5AC">Proof</a>
+      <a href="#reserve" class="btn" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: #F2EFEA; color: #0A0A0B; font-size: 14px; font-weight: 500">Reserve</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="position: relative; height: 100vh; min-height: 640px; overflow: hidden">
+    <img class="hero-img" src="/_blob/028f1979cfc608a584a07b1a6e55727c" alt="Side profile of a woman, eyes closed, wearing a small gold Temple sensor on her temple" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 38%, rgba(10,10,11,0) 62%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 30%)"></div>
+    <div class="hero-txt" style="position: relative; height: 100%; max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(56px, 12vh, 120px)">
+      <p class="r1" style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #D2AE6D">Batch 01 · Pre-orders 1 November</p>
+      <h1 class="r2" style="margin: 18px 0 0; max-width: 760px; font-weight: 300; font-size: clamp(48px, 7.4vw, 112px); line-height: 0.95; letter-spacing: -0.045em">See what your<br>heart rate <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: #D2AE6D">can’t.</span></h1>
+      <p class="r3" style="margin: 26px 0 0; max-width: 420px; font-size: 18px; color: #B9B5AC">The first wearable that reads blood flow to your brain — from a sensor smaller than a fingernail.</p>
+      <div class="r3" style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="#reserve" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #D2AE6D; color: #0A0A0B; font-weight: 500">Reserve yours</a>
+        <a href="#signals" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid rgba(242,239,234,0.24); font-weight: 500">How it works</a>
+      </div>
+    </div>
+    <div aria-hidden="true" class="r4" style="position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%)">
+      <div class="cue" style="width: 1px; height: 36px; background: linear-gradient(#F2EFEA, transparent)"></div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section aria-label="Statement" style="max-width: 1320px; margin: 0 auto; padding: clamp(120px, 18vh, 220px) clamp(16px, 4vw, 48px)">
+    <p class="words" style="margin: 0; max-width: 1100px; font-weight: 300; font-size: clamp(34px, 5vw, 72px); line-height: 1.08; letter-spacing: -0.035em; color: #F2EFEA">
+      <span>Your brain runs on a fifth of your blood.</span>
+      <span>Every wearable you own</span>
+      <span>has been watching</span>
+      <span>your wrist.</span>
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; color: #D2AE6D">Temple</span>
+      <span>watches the source.</span>
+    </p>
+  </section>
+
+  <!-- DEVICE / FINISHES -->
+  <section id="device" style="position: relative; padding: 40px clamp(16px, 4vw, 48px) 140px">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+        <h2 style="margin: 0; font-weight: 300; font-size: clamp(36px, 4.6vw, 64px); line-height: 1; letter-spacing: -0.04em">Smallest by volume.<br><span style="color: #7A766E">Impossible to ignore.</span></h2>
+        <p style="margin: 0; max-width: 340px; color: #9C988F">Screenless, polished, made to order. Ten finishes — six from the launch line, four imagined for this concept.</p>
+      </div>
+
+      <div class="scale-in" style="margin-top: 56px; position: relative; border-radius: 20px; overflow: hidden; background: radial-gradient(60% 60% at 50% 45%, {{glow}} 0%, rgba(10,10,11,0) 70%), #0B0B0C; border: 1px solid #1C1C1E">
+        <div class="sheen" aria-hidden="true"></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center">
+          <div style="flex: 1 1 520px; min-width: 0; display: flex; justify-content: center; padding: clamp(24px, 4vw, 56px)">
+            <div class="float" style="position: relative; width: min(520px, 100%); aspect-ratio: 1 / 1; isolation: isolate">
+              <img class="morph" src="/_blob/a60a6f351529cb3dc76a22d58db94540" alt="Temple sensor in {{dev.name}}" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: {{dev.filter}}">
+              <div class="morph" aria-hidden="true" style="position: absolute; inset: 0; background-color: {{dev.tint}}; mix-blend-mode: color"></div>
+            </div>
+          </div>
+          <div style="flex: 1 1 380px; min-width: 0; padding: clamp(24px, 4vw, 56px)">
+            <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A766E">{{dev.tag}}</p>
+            <h3 class="morph" style="margin: 10px 0 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; color: {{dev.ink}}">{{dev.name}}</h3>
+            <p style="margin: 14px 0 0; color: #9C988F">{{dev.note}}</p>
+
+            <div role="radiogroup" aria-label="Finish" style="margin-top: 36px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; max-width: 360px">
+              <sc-for list="{{finishes}}" as="s" hint-placeholder-count="10">
+                <button type="button" role="radio" aria-checked="{{s.checked}}" aria-label="{{s.name}}" title="{{s.name}}" onClick="{{s.pick}}" class="sw" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; cursor: pointer; background: transparent; border: 1.5px solid {{s.ring}}; display: flex; align-items: center; justify-content: center">
+                  <span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; background: {{s.chip}}; box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.35)"></span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="margin: 14px 0 0; font-size: 13px; color: #6E6A63">Top row: launch line. Bottom row: concept finishes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNALS -->
+  <section id="signals" style="max-width: 1320px; margin: 0 auto; padding: 60px clamp(16px, 4vw, 48px) 140px">
+    <div class="reveal" style="max-width: 760px">
+      <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #D2AE6D">Two signals</p>
+      <h2 style="margin: 16px 0 0; font-weight: 300; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.04em">One number for your brain.<br>One for everything else.</h2>
+    </div>
+
+    <div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px">
+      <!-- Entropy live -->
+      <article class="reveal" style="padding: clamp(24px, 3vw, 40px); border-radius: 20px; background: #111113; border: 1px solid #1C1C1E">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+          <h3 style="margin: 0; font-weight: 500; font-size: 20px">Entropy</h3>
+          <div role="group" aria-label="Simulate state" style="display: inline-flex; padding: 3px; border-radius: 999px; background: #0A0A0B; border: 1px solid #232325">
+            <sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+              <button type="button" aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" class="morph" style="min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}">{{m.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="margin-top: 28px; display: flex; align-items: baseline; gap: 10px">
+          <span class="morph" style="font-family: 'Geist Mono', monospace; font-weight: 400; font-size: clamp(72px, 9vw, 128px); line-height: 0.9; letter-spacing: -0.04em; color: {{eColor}}">{{entropy}}</span>
+          <span style="font-family: 'Geist Mono', monospace; font-size: 14px; color: #6E6A63">/ 250 · live</span>
+        </div>
+        <svg viewBox="0 0 600 140" preserveAspectRatio="none" role="img" aria-label="Simulated Entropy over the last minute" style="margin-top: 22px; width: 100%; height: 140px; display: block">
+          <polyline points="{{area}}" fill="{{eFill}}" stroke="none"></polyline>
+          <polyline points="{{line}}" fill="none" stroke="{{eColor}}" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"></polyline>
+        </svg>
+        <p style="margin: 22px 0 0; color: #9C988F">How hard your body is working to shed heat, updated every second. Low at rest is your <span style="color: #F2EFEA">Baseline</span>. Your peak near max heart rate is your <span style="color: #F2EFEA">Threshold</span>. Together: <span style="color: #F2EFEA">Momentum</span>.</p>
+        <p style="margin: 10px 0 0; font-size: 12px; color: #5E5B55">Simulated values for illustration.</p>
+      </article>
+
+      <!-- BrainFlow -->
+      <article class="reveal" style="padding: clamp(24px, 3vw, 40px); border-radius: 20px; background: #111113; border: 1px solid #1C1C1E; display: flex; flex-direction: column">
+        <h3 style="margin: 0; font-weight: 500; font-size: 20px">BrainFlow</h3>
+        <svg viewBox="0 0 600 260" role="img" aria-label="When lying down, heart rate falls while brain blood flow rises" style="margin-top: 28px; width: 100%; height: auto; display: block">
+          <line x1="300" y1="10" x2="300" y2="230" stroke="#2A2A2D" stroke-dasharray="3 5"></line>
+          <text x="306" y="24" fill="#6E6A63" font-family="Geist Mono, monospace" font-size="12">LIE DOWN</text>
+          <path d="M0 150 C80 148 160 152 240 150 C280 149 300 150 320 120 C350 80 420 74 600 72" fill="none" stroke="#D2AE6D" stroke-width="2.5"></path>
+          <path d="M0 100 C80 102 160 98 240 100 C280 101 300 100 320 128 C350 160 420 168 600 170" fill="none" stroke="#5E5B55" stroke-width="2" stroke-dasharray="6 6"></path>
+          <text x="470" y="62" fill="#D2AE6D" font-family="Geist Mono, monospace" font-size="13">BrainFlow ↑</text>
+          <text x="470" y="194" fill="#8A867E" font-family="Geist Mono, monospace" font-size="13">Heart rate ↓</text>
+        </svg>
+        <p style="margin: auto 0 0; padding-top: 22px; color: #9C988F">Lie down and your pulse slows — but blood to your brain rises. A wrist sees the drop. Temple tracked the rise, step for step with clinical Doppler.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- MACRO -->
+  <section aria-label="Wearing Temple" style="position: relative; overflow: hidden">
+    <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 520px; overflow: hidden">
+      <img class="parallax" src="/_blob/2fbfaf903bd35e98e58eee001c93d025" alt="Close-up of a gold Temple sensor held on the skin of the temple by a clear Grip" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% 42%">
+      <div aria-hidden="true" style="position: absolute; left: 67.4%; top: 42.2%; width: 70px; height: 70px">
+        <span class="ping" style="position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; border-radius: 50%; border: 1px solid #F2EFEA"></span>
+        <span class="ping2" style="position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; border-radius: 50%; border: 1px solid #F2EFEA"></span>
+      </div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,11,0.88) 0%, rgba(10,10,11,0.2) 45%, rgba(10,10,11,0) 60%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 22%), linear-gradient(180deg, #0A0A0B 0%, rgba(10,10,11,0) 14%)"></div>
+      <div style="position: absolute; inset: 0; max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center">
+        <h2 class="reveal" style="margin: 0; max-width: 520px; font-weight: 300; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.04em">Five minutes to get used to.<br><span style="font-family: 'Instrument Serif', serif; font-style: italic; color: #D2AE6D">Then you forget.</span></h2>
+        <p class="reveal" style="margin: 20px 0 0; max-width: 400px; color: #B9B5AC">Sits over the superficial temporal artery, held by a medical-grade Grip through runs, swims, showers and saunas.</p>
+      </div>
+    </div>
+    <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 140px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px">
+      <sc-for list="{{specs}}" as="x" hint-placeholder-count="4">
+        <div class="reveal" style="padding: 28px 24px 28px 0; border-top: 1px solid #232325">
+          <div style="font-weight: 300; font-size: 40px; letter-spacing: -0.03em">{{x.v}}</div>
+          <div style="margin-top: 6px; font-size: 14px; color: #8A867E">{{x.k}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 140px">
+    <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+      <h2 style="margin: 0; font-weight: 300; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.04em">Tested against<br>the instruments hospitals use.</h2>
+      <p style="margin: 0; max-width: 360px; color: #9C988F">Early, honest, and public. Results so far are in healthy adults; peer review is pending.</p>
+    </div>
+    <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
+      <sc-for list="{{proof}}" as="p" hint-placeholder-count="3">
+        <article class="reveal" style="padding: 32px; border-radius: 20px; background: #111113; border: 1px solid #1C1C1E">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A766E">{{p.signal}}</div>
+          <div style="margin-top: 18px; font-weight: 300; font-size: clamp(48px, 5vw, 68px); line-height: 1; letter-spacing: -0.04em; color: #D2AE6D">{{p.r}}</div>
+          <div style="margin-top: 16px; font-size: 16px">{{p.vs}}</div>
+          <div style="margin-top: 6px; font-size: 14px; color: #8A867E">{{p.n}}</div>
+          <div style="margin-top: 18px; display: inline-block; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; border: 1px solid #2E2D2A; color: #9C988F">{{p.status}}</div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" style="position: relative; overflow: hidden; border-top: 1px solid #1C1C1E">
+    <div aria-hidden="true" style="position: absolute; left: 50%; top: 0; width: 900px; height: 600px; transform: translate(-50%, -45%); background: radial-gradient(closest-side, rgba(210,174,109,0.22), rgba(210,174,109,0))"></div>
+    <div style="position: relative; max-width: 880px; margin: 0 auto; padding: clamp(110px, 16vh, 180px) clamp(16px, 4vw, 48px); text-align: center">
+      <p class="reveal" style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #D2AE6D">Batch 01</p>
+      <h2 class="reveal" style="margin: 18px 0 0; font-weight: 300; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.95; letter-spacing: -0.045em">Made to order.<br><span style="font-family: 'Instrument Serif', serif; font-style: italic; color: #D2AE6D">First come, first served.</span></h2>
+      <p class="reveal" style="margin: 24px auto 0; max-width: 460px; color: #9C988F">Pre-orders open 1 November. Hand-built after you order, shipping within about three months. Unlimited Grips included.</p>
+      <form class="reveal" style="margin: 40px auto 0; max-width: 520px; display: flex; flex-wrap: wrap; gap: 10px; padding: 6px; border-radius: 999px; background: #111113; border: 1px solid #232325">
+        <label for="email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email address</label>
+        <input id="email" type="email" placeholder="Email for your pre-order reminder" style="flex: 1 1 220px; min-width: 0; min-height: 52px; padding: 0 20px; border: 0; background: transparent; color: #F2EFEA; font: inherit; font-size: 16px; outline: none">
+        <button type="button" class="btn" style="min-height: 52px; padding: 0 26px; border: 0; border-radius: 999px; background: #D2AE6D; color: #0A0A0B; font: inherit; font-weight: 500; cursor: pointer">Notify me</button>
+      </form>
+      <p class="reveal" style="margin: 18px 0 0; font-size: 14px; color: #6E6A63">Selected finish: <span class="morph" style="color: {{dev.ink}}">{{dev.name}}</span> · Price announced at pre-order</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid #1C1C1E">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 48px) 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+      <div>
+        <div style="font-weight: 600; font-size: 28px; letter-spacing: -0.03em">Temple <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #7A766E">— a concept redesign</span></div>
+        <p style="margin: 10px 0 0; max-width: 560px; font-size: 13px; color: #6E6A63">Unofficial design study by Harshad Vaghasiya. Not affiliated with or endorsed by Temple Private Limited. Imagery is generated for this concept; product facts are from public reporting. Temple is a wellness device, not a medical device.</p>
+      </div>
+      <div style="display: flex; gap: 22px; font-size: 14px; color: #9C988F">
+        <a href="#device" style="padding: 8px 0">Device</a>
+        <a href="#signals" style="padding: 8px 0">Signals</a>
+        <a href="#proof" style="padding: 8px 0">Proof</a>
+        <a href="#reserve" style="padding: 8px 0">Reserve</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const hist = [];
+    for (let i = 0; i < 60; i++) hist.push(52 + Math.round(Math.sin(i / 5) * 4 + Math.random() * 4));
+    this.state = { finish: 'gold', mode: 'rest', hist: hist };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const h = this.state.hist;
+      const last = h[h.length - 1];
+      const target = this.state.mode === 'train' ? 182 : 54;
+      const next = Math.max(1, Math.min(250, Math.round(last + (target - last) * 0.16 + (Math.random() * 8 - 4))));
+      this.setState({ hist: h.slice(1).concat([next]) });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const F = [
+      { id: 'gold', name: 'True Gold', tag: 'Launch line', note: 'Polished warm gold.', filter: 'none', tint: 'rgba(0,0,0,0)', chip: 'radial-gradient(circle at 30% 25%, #FFF0C4, #C9A04E 55%, #6E5016)', ink: '#E2C185', glow: 'rgba(210,174,109,0.20)' },
+      { id: 'rose', name: 'Rose Gold', tag: 'Launch line', note: 'Soft copper-pink.', filter: 'grayscale(1) brightness(1.05) contrast(1.05)', tint: '#D58E78', chip: 'radial-gradient(circle at 30% 25%, #FFE1D6, #CF8F7B 55%, #6F3D30)', ink: '#E7AE9C', glow: 'rgba(213,142,120,0.20)' },
+      { id: 'mirror', name: 'Black Mirror', tag: 'Launch line', note: 'Gloss black, polished to a mirror.', filter: 'grayscale(1) brightness(0.55) contrast(1.6)', tint: 'rgba(0,0,0,0)', chip: 'radial-gradient(circle at 30% 25%, #8C8F96, #1A1B1F 55%, #000)', ink: '#C9CCD2', glow: 'rgba(160,165,175,0.12)' },
+      { id: 'jade', name: 'Real Jade', tag: 'Launch line · Limited', note: 'Deep stone green.', filter: 'grayscale(1) brightness(0.9) contrast(1.15)', tint: '#2F9A70', chip: 'radial-gradient(circle at 30% 25%, #BFF2DA, #3B9370 55%, #0F3B2B)', ink: '#7FD3AE', glow: 'rgba(47,154,112,0.22)' },
+      { id: 'blue', name: 'Deep Blue', tag: 'Launch line · Limited', note: 'Midnight blue.', filter: 'grayscale(1) brightness(0.82) contrast(1.2)', tint: '#2A52CC', chip: 'radial-gradient(circle at 30% 25%, #BBCBFF, #2A4FB5 55%, #0B1846)', ink: '#93AEFF', glow: 'rgba(42,82,204,0.24)' },
+      { id: 'purple', name: 'Purple Funk', tag: 'Launch line · Limited', note: 'Saturated violet.', filter: 'grayscale(1) brightness(0.85) contrast(1.2)', tint: '#8A3FD6', chip: 'radial-gradient(circle at 30% 25%, #E7CCFF, #7E3FC0 55%, #2C0F52)', ink: '#C59BF2', glow: 'rgba(138,63,214,0.22)' },
+      { id: 'bone', name: 'Bone Ceramic', tag: 'Concept finish', note: 'Matte ceramic, close to skin.', filter: 'grayscale(1) brightness(1.5) contrast(0.85)', tint: '#D9CDB6', chip: 'radial-gradient(circle at 30% 25%, #FFFFFF, #E4DCCB 55%, #9E9583)', ink: '#E9E1D2', glow: 'rgba(233,225,210,0.14)' },
+      { id: 'titanium', name: 'Lunar Titanium', tag: 'Concept finish', note: 'Bead-blasted grey titanium.', filter: 'grayscale(1) brightness(1.12) contrast(1.05)', tint: '#8E9AA6', chip: 'radial-gradient(circle at 30% 25%, #F2F5F8, #9AA3AC 55%, #464C54)', ink: '#C5CDD5', glow: 'rgba(142,154,166,0.16)' },
+      { id: 'oxblood', name: 'Oxblood', tag: 'Concept finish', note: 'Deep red lacquer.', filter: 'grayscale(1) brightness(0.72) contrast(1.25)', tint: '#9A1C33', chip: 'radial-gradient(circle at 30% 25%, #F3A9B5, #7D1D2F 55%, #2A060D)', ink: '#E88A9B', glow: 'rgba(154,28,51,0.24)' },
+      { id: 'glacier', name: 'Glacier', tag: 'Concept finish', note: 'Frosted pale aqua.', filter: 'grayscale(1) brightness(1.3) contrast(0.95)', tint: '#86D6C3', chip: 'radial-gradient(circle at 30% 25%, #FFFFFF, #BDE5DB 55%, #6A968C)', ink: '#B4EADD', glow: 'rgba(134,214,195,0.18)' }
+    ];
+    const dev = F.find((f) => f.id === this.state.finish) || F[0];
+    const finishes = F.map((f) => ({ ...f, checked: f.id === dev.id ? 'true' : 'false', ring: f.id === dev.id ? '#F2EFEA' : 'rgba(242,239,234,0.12)', pick: () => this.setState({ finish: f.id }) }));
+
+    const h = this.state.hist;
+    const W = 600, H = 140, n = h.length;
+    const pts = h.map((v, i) => (i * W / (n - 1)).toFixed(1) + ',' + (H - 6 - (v / 250) * (H - 12)).toFixed(1));
+    const line = pts.join(' ');
+    const area = '0,' + H + ' ' + line + ' ' + W + ',' + H;
+    const train = this.state.mode === 'train';
+    const eColor = train ? '#E8735A' : '#D2AE6D';
+
+    const modes = [
+      { id: 'rest', label: 'Resting' },
+      { id: 'train', label: 'Training' }
+    ].map((m) => {
+      const on = m.id === this.state.mode;
+      return { label: m.label, pressed: on ? 'true' : 'false', bg: on ? '#F2EFEA' : 'transparent', fg: on ? '#0A0A0B' : '#9C988F', pick: () => this.setState({ mode: m.id }) };
+    });
+
+    return {
+      dev, finishes, glow: dev.glow,
+      entropy: h[h.length - 1],
+      line, area, eColor,
+      eFill: train ? 'rgba(232,115,90,0.10)' : 'rgba(210,174,109,0.10)',
+      modes,
+      specs: [
+        { v: '~7 days', k: 'Battery per charge' },
+        { v: '1–250', k: 'Entropy, every second' },
+        { v: 'Unlimited', k: 'Grips, included' },
+        { v: 'Zero', k: 'Screens to distract you' }
+      ],
+      proof: [
+        { signal: 'BrainFlow', r: 'r ≈ 0.8', vs: 'vs transcranial Doppler', n: '20 adults · cycling and lying down', status: 'Preprint · medRxiv' },
+        { signal: 'BrainFlow', r: '0.84–0.91', vs: 'vs time-domain NIRS — brain, not scalp', n: '60 adults · tilt, squat, lying down', status: 'Preprint' },
+        { signal: 'Entropy', r: 'r = 0.93', vs: 'vs metabolic cart (heart rate: 0.55)', n: '100+ cardio sessions', status: 'Internal benchmark' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Temen — the wearable that reads your temple</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Inter+Tight:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0D11}
+a{color:#ECEEF2;text-decoration:none}a:hover{color:#7FB2FF}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+details[open] .faq-plus{transform:rotate(45deg)}
+</style>
+</helmet>
+
+<div style="background: #0B0D11; color: #ECEEF2; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 17px; line-height: 1.55; min-height: 100vh">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(11,13,17,0.86); backdrop-filter: blur(14px); border-bottom: 1px solid #1E232C">
+    <nav aria-label="Primary" style="max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; min-height: 44px">
+        <span aria-hidden="true" style="width: 26px; height: 12px; border-radius: 999px; background: {{dev.bg}}; transform: rotate(-18deg); box-shadow: 0 0 0 1px rgba(255,255,255,0.12)"></span>
+        <span style="font-family: Syne, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.02em">TEMEN</span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 15px; color: #B7BFCC">
+        <a href="#signals" style="padding: 10px 0">Signals</a>
+        <a href="#why" style="padding: 10px 0">Why the temple</a>
+        <a href="#finish" style="padding: 10px 0">Finishes</a>
+        <a href="#evidence" style="padding: 10px 0">Evidence</a>
+        <a href="#faq" style="padding: 10px 0">FAQ</a>
+      </div>
+      <a href="#reserve" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #ECEEF2; color: #0B0D11; font-weight: 600; font-size: 15px">Reserve Batch 01</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px 56px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
+    <div style="flex: 1 1 480px; min-width: 0">
+      <p style="margin: 0 0 22px; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #B7BFCC; border: 1px solid #262C37; border-radius: 999px; padding: 8px 14px">
+        <span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: {{heat}}"></span>
+        Batch 01 · Pre-orders open 1 Nov 2026
+      </p>
+      <h1 style="margin: 0; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(44px, 6.4vw, 92px); line-height: 0.98; letter-spacing: -0.02em">Your brain gets<br>a fifth of your blood.<br><span style="color: {{flow}}">Now you can watch it.</span></h1>
+      <p style="margin: 28px 0 0; max-width: 560px; font-size: 20px; color: #B7BFCC">Temen is a screenless sensor the size of a bean, worn on the temple — directly over an artery that runs close to the brain. It reads two things no wrist can: how well blood reaches your head, and how hard your whole body is working right now.</p>
+      <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="#reserve" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: {{flow}}; color: #0B0D11; font-weight: 600">Reserve on 1 November</a>
+        <a href="#evidence" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid #343B48; color: #ECEEF2; font-weight: 500">Read the evidence first</a>
+      </div>
+      <p style="margin: 22px 0 0; font-size: 14px; color: #8F98A8">Wellness and research device. Not a medical device and not for diagnosis.</p>
+    </div>
+
+    <div style="flex: 1 1 440px; min-width: 0; position: relative; aspect-ratio: 1 / 1.05; max-width: 560px; margin: 0 auto; border-radius: 28px; background: #12151B; border: 1px solid #1E232C; overflow: hidden">
+      <svg viewBox="0 0 480 500" role="img" aria-label="Side profile of a head with the Temen sensor worn on the temple" style="position: absolute; inset: 0; width: 100%; height: 100%">
+        <defs>
+          <radialGradient id="glow" cx="0.66" cy="0.42" r="0.5">
+            <stop offset="0" stop-color="#7FB2FF" stop-opacity="0.22"></stop>
+            <stop offset="1" stop-color="#7FB2FF" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="480" height="500" fill="url(#glow)"></rect>
+        <path d="M120 500 C118 440 100 392 92 340 C76 248 100 126 202 86 C286 54 366 96 390 172 C400 204 396 230 402 250 L430 304 C434 312 428 318 418 320 L408 322 C412 338 410 348 402 354 C408 362 406 372 398 376 C402 396 394 410 370 412 C344 414 334 424 332 452 L330 500" fill="none" stroke="#3A4250" stroke-width="2"></path>
+        <path d="M232 238 C214 230 206 254 214 276 C222 298 244 300 248 284" fill="none" stroke="#3A4250" stroke-width="2"></path>
+        <path d="M306 196 C330 190 352 196 366 214 C372 226 368 238 360 244" fill="none" stroke="{{flow}}" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.8"></path>
+        <path d="M300 214 C314 240 318 290 304 330" fill="none" stroke="{{heat}}" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.7"></path>
+        <circle cx="318" cy="206" r="40" fill="none" stroke="{{flow}}" stroke-opacity="0.25"></circle>
+        <circle cx="318" cy="206" r="64" fill="none" stroke="{{flow}}" stroke-opacity="0.12"></circle>
+      </svg>
+      <div aria-hidden="true" style="position: absolute; left: 61%; top: 37.5%; width: 64px; height: 28px; border-radius: 999px; transform: translate(-50%, -50%) rotate(-22deg); background: {{dev.bg}}; box-shadow: 0 8px 22px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.35)"></div>
+
+      <div style="position: absolute; left: 20px; top: 20px; padding: 14px 16px; border-radius: 16px; background: rgba(11,13,17,0.78); border: 1px solid #262C37; backdrop-filter: blur(8px)">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8F98A8">Entropy · simulated</div>
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 500; color: {{heat}}">{{entropy}}</span>
+          <span style="font-size: 13px; color: #8F98A8">/ 250</span>
+        </div>
+        <div style="margin-top: 8px; width: 150px; height: 4px; border-radius: 4px; background: #232833; overflow: hidden">
+          <div style="height: 100%; width: {{entropyPct}}; background: {{heat}}"></div>
+        </div>
+      </div>
+
+      <div style="position: absolute; right: 20px; bottom: 20px; padding: 14px 16px; border-radius: 16px; background: rgba(11,13,17,0.78); border: 1px solid #262C37; max-width: 230px">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8F98A8">BrainFlow</div>
+        <div style="margin-top: 6px; font-size: 15px; line-height: 1.4">Lie down: heart rate falls, brain flow <span style="color: {{flow}}; font-weight: 600">rises</span>. Temen follows the brain, not the pulse.</div>
+      </div>
+
+      <div style="position: absolute; left: 20px; bottom: 20px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8F98A8">Finish: <span style="color: #ECEEF2">{{dev.name}}</span></div>
+    </div>
+  </section>
+
+  <!-- FACT STRIP -->
+  <section aria-label="Key facts" style="border-top: 1px solid #1E232C; border-bottom: 1px solid #1E232C">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
+      <sc-for list="{{facts}}" as="f" hint-placeholder-count="5">
+        <div style="padding: 28px 20px 28px 0; border-right: 1px solid #1E232C">
+          <div style="font-family: Syne, sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.01em">{{f.big}}</div>
+          <div style="margin-top: 6px; font-size: 14px; color: #A6AEBB; line-height: 1.45">{{f.label}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SIGNALS -->
+  <section id="signals" style="max-width: 1280px; margin: 0 auto; padding: 112px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">01 — Two signals</p>
+    <h2 style="margin: 16px 0 0; max-width: 900px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.015em">Steps and heart rate describe effort. Temen describes cost.</h2>
+
+    <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px">
+      <article style="padding: 36px; border-radius: 24px; background: #12151B; border: 1px solid #1E232C">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 30px; font-weight: 700">BrainFlow</h3>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid {{flow}}; color: {{flow}}">Relative index</span>
+        </div>
+        <p style="margin: 18px 0 0; color: #B7BFCC">A continuous proxy for blood flow to the brain, read by light through the skin over the superficial temporal artery. It is a relative signal — it tells you whether flow is rising or falling against your own normal, not an absolute millilitres-per-minute figure.</p>
+        <ul style="margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 12px">
+          <li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: {{flow}}">→</span><span>See how posture, breathing and position change supply to your head through the day.</span></li>
+          <li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: {{flow}}">→</span><span>Catch the moments a wrist misreads — when heart rate and brain flow move in opposite directions.</span></li>
+        </ul>
+      </article>
+
+      <article style="padding: 36px; border-radius: 24px; background: #12151B; border: 1px solid #1E232C">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 30px; font-weight: 700">Entropy</h3>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid {{heat}}; color: {{heat}}">1 – 250 · every second</span>
+        </div>
+        <p style="margin: 18px 0 0; color: #B7BFCC">A live score for how hard your body is working to shed heat — the running cost of keeping you alive. At rest it sums the load across systems you rarely think about together: thermal, immune, digestive, cognitive, emotional, postural, recovery, even what you've taken that day.</p>
+        <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{movers}}" as="m" hint-placeholder-count="7">
+            <span style="font-size: 14px; padding: 8px 12px; border-radius: 999px; background: #1A1E26; color: #CDD3DC">{{m}}</span>
+          </sc-for>
+        </div>
+      </article>
+    </div>
+
+    <!-- Baseline / Threshold / Momentum -->
+    <div style="margin-top: 20px; padding: 36px; border-radius: 24px; background: #12151B; border: 1px solid #1E232C">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+        <div style="max-width: 620px">
+          <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 30px; font-weight: 700">One day, three numbers</h3>
+          <p style="margin: 10px 0 0; color: #B7BFCC">Entropy resolves into a floor you push down, a ceiling you push up, and one number that combines them.</p>
+        </div>
+        <div role="group" aria-label="Show mode" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #0B0D11; border: 1px solid #262C37">
+          <sc-for list="{{modes}}" as="md" hint-placeholder-count="3">
+            <button type="button" onClick="{{md.pick}}" aria-pressed="{{md.pressed}}" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; font: inherit; font-size: 15px; cursor: pointer; background: {{md.bg}}; color: {{md.fg}}">{{md.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch">
+        <figure style="flex: 2 1 520px; min-width: 0; margin: 0">
+          <svg viewBox="0 0 800 260" role="img" aria-label="Illustrative curve of Entropy across one day with Baseline and Threshold marked" style="width: 100%; height: auto; display: block">
+            <line x1="0" y1="226" x2="800" y2="226" stroke="#232833"></line>
+            <line x1="0" y1="200" x2="800" y2="200" stroke="{{flow}}" stroke-dasharray="6 6" stroke-opacity="{{baseOp}}"></line>
+            <line x1="0" y1="44" x2="800" y2="44" stroke="{{heat}}" stroke-dasharray="6 6" stroke-opacity="{{threshOp}}"></line>
+            <polyline points="0,204 60,202 110,200 150,198 180,176 210,170 240,182 290,168 320,150 350,172 400,178 430,120 452,62 470,46 490,52 510,90 540,150 580,172 620,160 660,182 700,190 740,198 800,201" fill="none" stroke="#ECEEF2" stroke-width="2.5" stroke-linejoin="round"></polyline>
+            <text x="8" y="192" fill="{{flow}}" font-family="JetBrains Mono, monospace" font-size="13" fill-opacity="{{baseOp}}">BASELINE · deep rest</text>
+            <text x="8" y="36" fill="{{heat}}" font-family="JetBrains Mono, monospace" font-size="13" fill-opacity="{{threshOp}}">THRESHOLD · near max heart rate</text>
+            <text x="170" y="250" fill="#8F98A8" font-family="JetBrains Mono, monospace" font-size="12">coffee</text>
+            <text x="300" y="250" fill="#8F98A8" font-family="JetBrains Mono, monospace" font-size="12">meeting</text>
+            <text x="440" y="250" fill="#8F98A8" font-family="JetBrains Mono, monospace" font-size="12">run</text>
+            <text x="600" y="250" fill="#8F98A8" font-family="JetBrains Mono, monospace" font-size="12">dinner</text>
+          </svg>
+          <figcaption style="margin-top: 10px; font-size: 13px; color: #8F98A8">Illustrative shape only — not real user data.</figcaption>
+        </figure>
+        <div style="flex: 1 1 280px; min-width: 0; padding: 24px; border-radius: 18px; background: #0B0D11; border: 1px solid #262C37">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: {{modeColor}}">{{modeKicker}}</div>
+          <div style="margin-top: 10px; font-family: Syne, sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15">{{modeTitle}}</div>
+          <p style="margin: 12px 0 0; color: #B7BFCC">{{modeBody}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THE TEMPLE -->
+  <section id="why" style="max-width: 1280px; margin: 0 auto; padding: 96px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">02 — Why the temple</p>
+    <h2 style="margin: 16px 0 0; max-width: 940px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.015em">The wrist is a long way from the organ that matters most.</h2>
+    <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+      <sc-for list="{{whys}}" as="w" hint-placeholder-count="3">
+        <div style="padding: 32px 28px; border-top: 2px solid {{w.color}}; background: #12151B; border-radius: 0 0 20px 20px">
+          <div style="font-family: Syne, sans-serif; font-weight: 800; font-size: 54px; line-height: 1; color: {{w.color}}">{{w.num}}</div>
+          <h3 style="margin: 18px 0 0; font-size: 20px; font-weight: 600">{{w.title}}</h3>
+          <p style="margin: 10px 0 0; color: #B7BFCC">{{w.body}}</p>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: 20px; padding: 32px 36px; border-radius: 24px; border: 1px solid #262C37; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+      <p style="margin: 0; max-width: 760px; font-size: 19px; color: #CDD3DC"><span style="font-weight: 600; color: #ECEEF2">The idea that started it.</span> Temen grew out of a research question: does a lifetime of standing upright slowly reduce blood flow to the brain? That hypothesis is still being tested and openly disputed by some clinicians. The sensor is useful either way — brain blood flow is already studied as a marker of ageing and cognition.</p>
+      <a href="#evidence" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid #343B48; font-weight: 500">See what is proven</a>
+    </div>
+  </section>
+
+  <!-- FINISHES -->
+  <section id="finish" style="max-width: 1280px; margin: 0 auto; padding: 96px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">03 — Finishes</p>
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <h2 style="margin: 16px 0 0; max-width: 760px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.015em">Worn on your face. So it should look like you chose it.</h2>
+      <p style="margin: 0; max-width: 360px; color: #A6AEBB">Ten finishes. Six from the launch line, four new to Temen. Three are limited to Batch 01.</p>
+    </div>
+
+    <div style="margin-top: 48px; display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+      <div style="flex: 1 1 460px; min-width: 0; position: relative; min-height: 420px; border-radius: 28px; background: {{dev.stage}}; border: 1px solid #1E232C; overflow: hidden; display: flex; align-items: center; justify-content: center">
+        <div aria-hidden="true" style="width: 240px; height: 104px; border-radius: 999px; transform: rotate(-16deg); background: {{dev.bg}}; box-shadow: 0 40px 60px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -6px 14px rgba(0,0,0,0.35)"></div>
+        <div style="position: absolute; left: 28px; bottom: 26px; right: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+          <div>
+            <div style="font-family: Syne, sans-serif; font-weight: 700; font-size: 32px; color: {{dev.ink}}">{{dev.name}}</div>
+            <div style="margin-top: 4px; font-size: 15px; color: {{dev.ink}}; opacity: 0.8">{{dev.note}}</div>
+          </div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid {{dev.ink}}; color: {{dev.ink}}">{{dev.tag}}</span>
+        </div>
+      </div>
+
+      <div style="flex: 1 1 380px; min-width: 0; padding: 28px; border-radius: 28px; background: #12151B; border: 1px solid #1E232C">
+        <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #A6AEBB">Launch line</h3>
+        <div role="radiogroup" aria-label="Launch line finishes" style="margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px">
+          <sc-for list="{{launchSw}}" as="s" hint-placeholder-count="6">
+            <button type="button" role="radio" aria-checked="{{s.checked}}" onClick="{{s.pick}}" style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; border-radius: 14px; background: #0B0D11; border: 1.5px solid {{s.ring}}; color: #ECEEF2; font: inherit; font-size: 14px; text-align: left; cursor: pointer">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: {{s.bg}}; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15)"></span>
+              <span style="display: flex; flex-direction: column; line-height: 1.2"><span>{{s.name}}</span><span style="font-size: 11px; color: #8F98A8">{{s.tag}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+        <h3 style="margin: 26px 0 0; font-size: 15px; font-weight: 500; color: #A6AEBB">New for Temen</h3>
+        <div role="radiogroup" aria-label="New Temen finishes" style="margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px">
+          <sc-for list="{{newSw}}" as="s" hint-placeholder-count="4">
+            <button type="button" role="radio" aria-checked="{{s.checked}}" onClick="{{s.pick}}" style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; border-radius: 14px; background: #0B0D11; border: 1.5px solid {{s.ring}}; color: #ECEEF2; font: inherit; font-size: 14px; text-align: left; cursor: pointer">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: {{s.bg}}; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15)"></span>
+              <span style="display: flex; flex-direction: column; line-height: 1.2"><span>{{s.name}}</span><span style="font-size: 11px; color: #8F98A8">{{s.tag}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEAR -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 96px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">04 — Living with it</p>
+    <h2 style="margin: 16px 0 0; max-width: 900px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.015em">The hardest part to build was the sticker.</h2>
+    <p style="margin: 20px 0 0; max-width: 720px; font-size: 19px; color: #B7BFCC">A sensor on your head is only useful if it stays put through a run, a swim and a sauna, and you forget it is there. The medical-grade Grip that holds Temen took as long to get right as the device.</p>
+    <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #1E232C; border: 1px solid #1E232C; border-radius: 24px; overflow: hidden">
+      <sc-for list="{{wear}}" as="x" hint-placeholder-count="6">
+        <div style="padding: 30px 28px; background: #0B0D11">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8F98A8">{{x.k}}</div>
+          <div style="margin-top: 10px; font-family: Syne, sans-serif; font-weight: 700; font-size: 24px; line-height: 1.2">{{x.v}}</div>
+          <p style="margin: 8px 0 0; font-size: 15px; color: #A6AEBB">{{x.d}}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section id="evidence" style="max-width: 1280px; margin: 0 auto; padding: 96px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">05 — Evidence, with the caveats</p>
+    <h2 style="margin: 16px 0 0; max-width: 980px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.015em">We show the sample size next to every number.</h2>
+    <p style="margin: 20px 0 0; max-width: 720px; font-size: 19px; color: #B7BFCC">A new biomarker should earn trust in public. Here is every validation so far, what it was measured against, and what it does not yet prove.</p>
+
+    <div style="margin-top: 48px; overflow-x: auto; border: 1px solid #1E232C; border-radius: 24px">
+      <table style="width: 100%; min-width: 860px; border-collapse: collapse; font-size: 15px">
+        <thead>
+          <tr style="text-align: left; color: #A6AEBB; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">
+            <th scope="col" style="padding: 18px 22px; border-bottom: 1px solid #1E232C; font-weight: 500">Signal</th>
+            <th scope="col" style="padding: 18px 22px; border-bottom: 1px solid #1E232C; font-weight: 500">Compared against</th>
+            <th scope="col" style="padding: 18px 22px; border-bottom: 1px solid #1E232C; font-weight: 500">People &amp; tests</th>
+            <th scope="col" style="padding: 18px 22px; border-bottom: 1px solid #1E232C; font-weight: 500">Result</th>
+            <th scope="col" style="padding: 18px 22px; border-bottom: 1px solid #1E232C; font-weight: 500">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{studies}}" as="st" hint-placeholder-count="3">
+            <tr style="vertical-align: top">
+              <th scope="row" style="padding: 22px; border-bottom: 1px solid #1E232C; text-align: left; font-weight: 600; color: {{st.color}}">{{st.signal}}</th>
+              <td style="padding: 22px; border-bottom: 1px solid #1E232C">{{st.vs}}</td>
+              <td style="padding: 22px; border-bottom: 1px solid #1E232C; color: #B7BFCC">{{st.who}}</td>
+              <td style="padding: 22px; border-bottom: 1px solid #1E232C; font-family: 'JetBrains Mono', monospace; white-space: nowrap">{{st.r}}</td>
+              <td style="padding: 22px; border-bottom: 1px solid #1E232C; color: #B7BFCC">{{st.status}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+      <div style="padding: 30px; border-radius: 24px; background: #12151B; border: 1px solid #1E232C">
+        <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 24px; font-weight: 700">What it does not prove yet</h3>
+        <ul style="margin: 16px 0 0; padding-left: 20px; color: #B7BFCC; display: grid; gap: 8px">
+          <li>Absolute brain blood flow — BrainFlow is a relative, normalised index.</li>
+          <li>Anything about disease. Every study so far used healthy adults.</li>
+          <li>Entropy as an independent biomarker — its benchmark is internal and unpublished.</li>
+          <li>Peer review — both BrainFlow papers are preprints.</li>
+        </ul>
+      </div>
+      <div style="padding: 30px; border-radius: 24px; background: #12151B; border: 1px solid #1E232C">
+        <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 24px; font-weight: 700">Test it yourself</h3>
+        <p style="margin: 16px 0 0; color: #B7BFCC">Qualified researchers can borrow devices to run independent studies on BrainFlow and Entropy. Results get shared whether they flatter us or not.</p>
+        <a href="#reserve" style="margin-top: 20px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid #343B48; font-weight: 500">Request a research unit</a>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 30px; border-radius: 24px; border: 1px solid #262C37">
+      <h3 style="margin: 0; font-family: Syne, sans-serif; font-size: 24px; font-weight: 700">Scientific advisory board</h3>
+      <p style="margin: 10px 0 0; max-width: 760px; color: #A6AEBB">Eight researchers across these fields guide the science. [Advisor names and photos to be added with their consent.]</p>
+      <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{fields}}" as="fd" hint-placeholder-count="8">
+          <span style="font-size: 14px; padding: 9px 14px; border-radius: 999px; background: #1A1E26; color: #CDD3DC">{{fd}}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" style="max-width: 1280px; margin: 0 auto; padding: 96px 24px 40px">
+    <div style="padding: clamp(28px, 5vw, 64px); border-radius: 32px; background: #ECEEF2; color: #0B0D11">
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #4A5260">06 — Batch 01</p>
+      <h2 style="margin: 16px 0 0; max-width: 860px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.015em">Made to order. First come, first served.</h2>
+      <div style="margin-top: 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0">
+        <sc-for list="{{steps}}" as="sp" hint-placeholder-count="4">
+          <div style="padding: 0 24px 0 0; border-top: 2px solid #0B0D11">
+            <div style="padding-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #4A5260">{{sp.when}}</div>
+            <div style="margin-top: 8px; font-family: Syne, sans-serif; font-weight: 700; font-size: 22px">{{sp.what}}</div>
+            <p style="margin: 8px 0 24px; font-size: 15px; color: #3A414D">{{sp.d}}</p>
+          </div>
+        </sc-for>
+      </div>
+      <form style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end">
+        <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+          <label for="email" style="font-size: 14px; font-weight: 600">Email for your reservation reminder</label>
+          <input id="email" type="email" placeholder="you@example.com" style="min-height: 52px; padding: 0 18px; border-radius: 14px; border: 1.5px solid #0B0D11; background: #FFFFFF; font: inherit; color: #0B0D11">
+        </div>
+        <div style="flex: 0 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 14px; font-weight: 600">Finish</span>
+          <span style="min-height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-radius: 14px; border: 1.5px solid #C5CAD3"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 50%; background: {{dev.bg}}"></span>{{dev.name}}</span>
+        </div>
+        <button type="button" style="min-height: 52px; padding: 0 28px; border: 0; border-radius: 999px; background: #0B0D11; color: #ECEEF2; font: inherit; font-weight: 600; cursor: pointer">Remind me on 1 Nov</button>
+      </form>
+      <p style="margin: 18px 0 0; font-size: 14px; color: #4A5260">Price: [ANNOUNCED AT PRE-ORDER]. Unlimited Grips included with every device.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="max-width: 980px; margin: 0 auto; padding: 96px 24px 40px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{flow}}">07 — Straight answers</p>
+    <h2 style="margin: 16px 0 32px; font-family: Syne, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.04">Questions people actually ask</h2>
+    <sc-for list="{{faqs}}" as="q" hint-placeholder-count="7">
+      <details style="border-top: 1px solid #1E232C; padding: 4px 0">
+        <summary style="display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; font-size: 19px; font-weight: 500">
+          <span>{{q.q}}</span>
+          <span class="faq-plus" aria-hidden="true" style="flex: none; font-size: 26px; color: {{flow}}; transition: transform 0.2s">+</span>
+        </summary>
+        <p style="margin: 0 0 22px; max-width: 760px; color: #B7BFCC">{{q.a}}</p>
+      </details>
+    </sc-for>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top: 80px; border-top: 1px solid #1E232C">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px">
+      <div style="max-width: 420px">
+        <div style="font-family: Syne, sans-serif; font-weight: 800; font-size: 40px; letter-spacing: 0.02em">TEMEN</div>
+        <p style="margin: 12px 0 0; color: #A6AEBB">Everyone you see wearing Temen chose to. Nobody is paid to wear or promote it.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 15px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="color: #8F98A8; font-size: 13px">Product</span>
+          <a href="#signals" style="padding: 6px 0">Signals</a>
+          <a href="#finish" style="padding: 6px 0">Finishes</a>
+          <a href="#reserve" style="padding: 6px 0">Batch 01</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="color: #8F98A8; font-size: 13px">Science</span>
+          <a href="#evidence" style="padding: 6px 0">Validation</a>
+          <a href="#evidence" style="padding: 6px 0">Research units</a>
+          <a href="#faq" style="padding: 6px 0">FAQ</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="color: #8F98A8; font-size: 13px">Legal</span>
+          <a href="#top" style="padding: 6px 0">Privacy</a>
+          <a href="#top" style="padding: 6px 0">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px 40px; font-size: 13px; color: #8F98A8">Concept redesign by Harshad Vaghasiya · 2026</div>
+  </footer>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"flow":{"editor":"color","default":"#7FB2FF","options":["#7FB2FF","#6EE7C8","#B9A6FF","#E8E3D3"],"section":"Signal colours"},"heat":{"editor":"color","default":"#FF5C7A","options":["#FF5C7A","#FF7AD9","#F6D55C","#6EE7C8"],"section":"Signal colours"},"$preview":{"width":1440,"height":7600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { finish: 'gold', mode: 'rest', entropy: 64 };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const target = this.state.mode === 'active' ? 168 : (this.state.mode === 'rest' ? 58 : 96);
+      const e = this.state.entropy;
+      const step = Math.round((target - e) * 0.18 + (Math.random() * 6 - 3));
+      const next = Math.max(1, Math.min(250, e + step));
+      this.setState({ entropy: next });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const flow = this.props.flow ?? '#7FB2FF';
+    const heat = this.props.heat ?? '#FF5C7A';
+    const metal = (hi, base, lo) => 'radial-gradient(120% 140% at 28% 22%, ' + hi + ' 0%, ' + base + ' 42%, ' + lo + ' 100%)';
+    const finishes = [
+      { id: 'gold', name: 'True Gold', tag: 'Launch line', note: 'Brushed warm gold', bg: metal('#FFF1C2', '#D4AE52', '#7A5B1A'), stage: '#1A1710', ink: '#F3E7C6', group: 'launch' },
+      { id: 'rose', name: 'Rose Gold', tag: 'Launch line', note: 'Soft copper-pink', bg: metal('#FFE3D8', '#D49A86', '#7E4A3C'), stage: '#1B1513', ink: '#F4DCD3', group: 'launch' },
+      { id: 'mirror', name: 'Black Mirror', tag: 'Launch line', note: 'Gloss black, mirror polish', bg: metal('#8A8F99', '#1C1E23', '#050506'), stage: '#16181D', ink: '#E2E5EA', group: 'launch' },
+      { id: 'jade', name: 'Real Jade', tag: 'Limited · Batch 01', note: 'Deep stone green', bg: metal('#BFF0DA', '#3E8E6E', '#123A2B'), stage: '#0F1A16', ink: '#D2F2E4', group: 'launch' },
+      { id: 'blue', name: 'Deep Blue', tag: 'Limited · Batch 01', note: 'Midnight anodised blue', bg: metal('#B7C9FF', '#2547A3', '#0C1A45'), stage: '#0E1322', ink: '#D6E0FF', group: 'launch' },
+      { id: 'purple', name: 'Purple Funk', tag: 'Limited · Batch 01', note: 'Saturated violet', bg: metal('#E5C9FF', '#7A3FB8', '#2E1250'), stage: '#160F20', ink: '#EAD9FF', group: 'launch' },
+      { id: 'bone', name: 'Bone Ceramic', tag: 'Temen exclusive', note: 'Matte ceramic, near skin-tone', bg: metal('#FFFFFF', '#E6E1D6', '#A39D90'), stage: '#1A1917', ink: '#F2EFE8', group: 'new' },
+      { id: 'titanium', name: 'Lunar Titanium', tag: 'Temen exclusive', note: 'Bead-blasted grey titanium', bg: metal('#F0F3F6', '#9BA3AB', '#4A5058'), stage: '#14171B', ink: '#E4E8EC', group: 'new' },
+      { id: 'oxblood', name: 'Oxblood Enamel', tag: 'Temen exclusive', note: 'Deep red lacquer', bg: metal('#F2A7B2', '#7A1E2E', '#2C070D'), stage: '#1A0E11', ink: '#F5D3D9', group: 'new' },
+      { id: 'glacier', name: 'Glacier Mint', tag: 'Temen exclusive', note: 'Pale frosted aqua', bg: metal('#FFFFFF', '#BFE3DA', '#6E968D'), stage: '#111917', ink: '#DFF3EE', group: 'new' }
+    ];
+    const dev = finishes.find((f) => f.id === this.state.finish) || finishes[0];
+    const sw = (f) => ({ ...f, checked: f.id === dev.id ? 'true' : 'false', ring: f.id === dev.id ? flow : '#262C37', pick: () => this.setState({ finish: f.id }) });
+
+    const modeDefs = [
+      { id: 'rest', label: 'At rest', kicker: 'Baseline', color: flow, title: 'Bring the floor down.', body: 'The lowest Entropy you settle to at rest. A lower resting cost tends to travel with longer lives across the animal world, so this is the number to nudge downward — through sleep, calm and recovery.' },
+      { id: 'active', label: 'In motion', kicker: 'Threshold', color: heat, title: 'Push the ceiling up.', body: 'The highest Entropy you can hold near your maximum heart rate. A high ceiling is the mark of a capable body, and it drifts down with age unless you train it.' },
+      { id: 'both', label: 'Momentum', kicker: 'Momentum', color: '#ECEEF2', title: 'One number for the whole system.', body: 'Baseline and Threshold combined into a single reading of how your body is doing — a wide gap between a low floor and a high ceiling is what you are after.' }
+    ];
+    const md = modeDefs.find((m) => m.id === this.state.mode) || modeDefs[0];
+    const modes = modeDefs.map((m) => ({ label: m.label, pressed: m.id === md.id ? 'true' : 'false', bg: m.id === md.id ? '#ECEEF2' : 'transparent', fg: m.id === md.id ? '#0B0D11' : '#B7BFCC', pick: () => this.setState({ mode: m.id }) }));
+
+    return {
+      flow, heat, dev,
+      entropy: this.state.entropy,
+      entropyPct: Math.round(this.state.entropy / 250 * 100) + '%',
+      launchSw: finishes.filter((f) => f.group === 'launch').map(sw),
+      newSw: finishes.filter((f) => f.group === 'new').map(sw),
+      modes,
+      modeKicker: md.kicker, modeTitle: md.title, modeBody: md.body, modeColor: md.color,
+      baseOp: md.id === 'active' ? 0.25 : 1,
+      threshOp: md.id === 'rest' ? 0.25 : 1,
+      facts: [
+        { big: '1–250', label: 'Entropy scale, refreshed every second' },
+        { big: '~7 days', label: 'Battery on a single charge' },
+        { big: 'r ≈ 0.8', label: 'BrainFlow vs transcranial Doppler, 20 adults' },
+        { big: '0.84–0.91', label: 'BrainFlow vs brain blood volume (td-NIRS), 60 adults' },
+        { big: 'Screenless', label: 'All readings live in the companion app' }
+      ],
+      movers: ['Sleep', 'Stress', 'Exercise', 'Caffeine', 'Meals', 'Meditation', 'Cold exposure'],
+      whys: [
+        { num: '~20%', color: flow, title: 'Of your blood goes to the brain', body: 'The most demanding organ you have is also the one your wearables never look at.' },
+        { num: '↑ ↓', color: heat, title: 'Pulse and brain flow can disagree', body: 'When you lie down, heart rate drops while blood to the brain rises. A wrist sees the drop. Temen tracked the rise, in step with clinical Doppler.' },
+        { num: 'STA', color: '#ECEEF2', title: 'Right over an artery near the brain', body: 'The temple sits over the superficial temporal artery, close to the head’s central circulation — a signal you cannot get from a wrist or finger.' }
+      ],
+      wear: [
+        { k: 'Size', v: 'Smallest by volume', d: 'Less than half the size of the first prototype. Claimed to be the smallest wearable on the market by volume.' },
+        { k: 'Grips', v: 'Unlimited, included', d: 'Single-use, medical-grade adhesive. Swap every 2–3 days; some wearers stretch one across a full charge.' },
+        { k: 'Water & heat', v: 'Swim. Shower. Sauna.', d: 'The Grip is built to hold through running, jumping, water and heat.' },
+        { k: 'Battery', v: 'About a week', d: 'Roughly seven days between charges, stored and charged in its own case.' },
+        { k: 'Comfort', v: 'Five minutes to forget it', d: 'Most wearers report a short adjustment period, then nothing.' },
+        { k: 'Made for', v: 'People who track seriously', d: 'Athletes, founders, scientists, doctors, creators — anyone who cares about physical and cognitive health.' }
+      ],
+      studies: [
+        { signal: 'BrainFlow', color: flow, vs: 'Transcranial Doppler (middle cerebral artery velocity)', who: '23 enrolled, 20 analysed per test · cycling, stand-to-lying', r: 'r ≈ 0.8', status: 'Preprint, medRxiv, Sep 2026 · under peer review' },
+        { signal: 'BrainFlow', color: flow, vs: 'Time-domain NIRS — separates brain from scalp blood volume', who: '60 adults · head-down tilt, stand-to-squat, stand-to-lying', r: 'r = 0.84–0.91', status: 'Preprint · tracked brain volume more closely than scalp' },
+        { signal: 'Entropy', color: heat, vs: 'Metabolic cart (indirect calorimetry)', who: '100+ cardio sessions · heart rate scored r = 0.55 on the same test', r: 'r = 0.93', status: 'Internal benchmark · not yet published' }
+      ],
+      fields: ['Neurophotonics', 'Cerebrovascular ageing', 'Space physiology', 'Neuroimaging', 'Neurovascular imaging', 'Complex-trait genetics', 'Behavioural neuroscience', 'Regenerative medicine'],
+      steps: [
+        { when: '1 Nov 2026', what: 'Pre-orders open', d: 'Batch 01 reservations go live. Limited finishes go first.' },
+        { when: 'After you order', what: 'Hand-built for you', d: 'Each Batch 01 unit is made to order, not pulled from a warehouse.' },
+        { when: 'Within ~3 months', what: 'Ships to you', d: 'First deliveries expected in early 2027.' },
+        { when: 'Day one', what: 'Wear and calibrate', d: 'A few days of normal life sets your personal Baseline.' }
+      ],
+      faqs: [
+        { q: 'Is Temen a medical device?', a: 'No. It is a wellness and research wearable. It does not diagnose, treat or screen for any condition, and it does not replace tests done by clinicians.' },
+        { q: 'Does it read my brain, or just my scalp?', a: 'This is the right question to ask. In a 60-person study against time-domain NIRS — a method that can separate the two — BrainFlow tracked brain blood volume more closely than scalp blood volume. It is still a relative index, not an absolute measurement.' },
+        { q: 'What is Entropy, in plain words?', a: 'A live 1–250 score for how hard your body is working to shed heat — effectively how much it costs to keep you running right now. Low and steady at rest is good; a high ceiling during effort is good.' },
+        { q: 'Why not just use heart rate?', a: 'Heart rate lags and can move the opposite way to what matters. In internal tests against a metabolic cart, Entropy followed energy use far more closely than heart rate did.' },
+        { q: 'How long does the battery last?', a: 'About seven days. Grips are swapped every two to three days, and an unlimited supply comes with the device.' },
+        { q: 'Can I swim or shower with it?', a: 'Yes. The Grip is designed to hold through swimming, showers, saunas and hard training.' },
+        { q: 'Who should not buy this yet?', a: 'Anyone looking for a clinical answer about a health condition. The evidence so far is in healthy adults and two of three studies are preprints. Buy it to learn about yourself, not to diagnose yourself.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
